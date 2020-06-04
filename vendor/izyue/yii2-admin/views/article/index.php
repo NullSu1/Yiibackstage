@@ -12,35 +12,33 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-lg-12">
-        <section class="panel">
-            <header class="panel-heading">
-                <?= $this->title ?>
-            </header>
+        <section class="wrapper site-min-height">
+            <section class="panel">
+                <h1><?= Html::encode($this->title) ?></h1>
 
-            <h1><?= Html::encode($this->title) ?></h1>
+                <p>
+                    <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
+                </p>
 
-            <p>
-                <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
-            </p>
+                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
 
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
+                        'id',
+                        'user',
+                        'article_title',
+                        'content:ntext',
+                        'created_at',
+                        'updated_at',
 
-                    'id',
-                    'user',
-                    'article_title',
-                    'content:ntext',
-                    'created_at',
-                    'updated_at',
-
-                    ['class' => 'yii\grid\ActionColumn'],
-                ],
-            ]); ?>
+                        ['class' => 'yii\grid\ActionColumn'],
+                    ],
+                ]); ?>
+            </section>
         </section>
     </div>
 </div>

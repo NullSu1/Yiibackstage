@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- page start-->
     <section class="panel">
         <header class="panel-heading">
-            <?=$this->title?>
+            <h1><?=$this->title?></h1>
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">
