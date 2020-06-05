@@ -23,7 +23,7 @@ $this->registerJs($this->render('_script.js'));
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    <?=$this->title?>
+                    <h1><?=$this->title?></h1>
                 </header>
                 <div class="panel-body">
                     <div class="row">

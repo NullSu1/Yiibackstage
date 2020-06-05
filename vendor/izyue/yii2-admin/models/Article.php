@@ -31,10 +31,9 @@ class Article extends \common\models\base\BaseModel
     {
         return [
             [['user', 'article_title'], 'required'],
-            [['content'], 'string'],
+            [['content','updated_at'], 'string'],
             [['created_at'], 'safe'],
-            [['updated_at'], 'safe'],
-            [['user', 'article_title'], 'string', 'max' => 255],
+            [['user', 'article_title','author'], 'string', 'max' => 255],
         ];
     }
 
@@ -50,6 +49,8 @@ class Article extends \common\models\base\BaseModel
             'content' => 'Content',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'author' => 'Author',
+
         ];
     }
 }

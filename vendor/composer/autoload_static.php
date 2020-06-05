@@ -25,6 +25,10 @@ class ComposerStaticInit38e9e88538e1ca8a55085354fe916b2c
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'k' => 
+        array (
+            'kucha\\ueditor\\' => 14,
+        ),
         'i' => 
         array (
             'izyue\\admin\\' => 12,
@@ -79,6 +83,10 @@ class ComposerStaticInit38e9e88538e1ca8a55085354fe916b2c
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'kucha\\ueditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kucha/ueditor',
         ),
         'izyue\\admin\\' => 
         array (

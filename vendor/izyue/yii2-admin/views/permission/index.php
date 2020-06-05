@@ -18,7 +18,7 @@ $this->registerCssFile('@web/statics/assets/data-tables/DT_bootstrap.css', ['dep
     <!-- page start-->
     <section class="panel">
         <header class="panel-heading">
-            <?=$this->title?>
+            <h1><?=$this->title?></h1>
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">

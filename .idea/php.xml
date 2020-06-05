@@ -32,6 +32,7 @@
       <path value="$PROJECT_DIR$/vendor/bower-asset/inputmask" />
       <path value="$PROJECT_DIR$/vendor/bower-asset/yii2-pjax" />
       <path value="$PROJECT_DIR$/vendor/bower-asset/typeahead.js" />
+      <path value="$PROJECT_DIR$/vendor/kucha/ueditor" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

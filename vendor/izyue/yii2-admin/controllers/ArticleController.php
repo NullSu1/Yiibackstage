@@ -2,12 +2,15 @@
 
 namespace izyue\admin\controllers;
 
+use izyue\admin\components\MenuHelper;
 use Yii;
 use izyue\admin\models\Article;
 use izyue\admin\models\searchs\Article as ArticleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use izyue\admin\components\Helper;
+
 
 /**
  * ArticleController implements the CRUD actions for Article model.
@@ -23,7 +26,7 @@ class ArticleController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -42,6 +45,39 @@ class ArticleController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionAssign($id)
+    {
+        $post = Yii::$app->getRequest()->post();
+        $action = $post['action'];
+        $roles = $post['roles'];
+        $manager = Yii::$app->getAuthManager();
+        $error = [];
+        if ($action == 'assign') {
+            foreach ($roles as $name) {
+                try {
+                    $item = $manager->getRole($name);
+                    $item = $item ? : $manager->getPermission($name);
+                    $manager->assign($item, $id);
+                } catch (\Exception $exc) {
+                    $error[] = $exc->getMessage();
+                }
+            }
+        } else {
+            foreach ($roles as $name) {
+                try {
+                    $item = $manager->getRole($name);
+                    $item = $item ? : $manager->getPermission($name);
+                    $manager->revoke($item, $id);
+                } catch (\Exception $exc) {
+                    $error[] = $exc->getMessage();
+                }
+            }
+        }
+        Helper::invalidate();
+        Yii::$app->response->format = 'json';
+        return array_merge($this->getItems($id), ['errors' => $error]);
     }
 
     /**
@@ -67,6 +103,9 @@ class ArticleController extends Controller
         $model = new Article;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->author = Yii::$app->user->identity['username'];
+            $model->created_at = date('Y-m-d H:i:s');
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -87,6 +126,7 @@ class ArticleController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -123,5 +163,18 @@ class ArticleController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    public function actions()
+    {
+        return [
+            'upload' => [
+                'class' => 'kucha\ueditor\UEditorAction',
+                'config' => [
+                    "imageUrlPrefix"  => "",//图片访问路径前缀
+                    "imagePathFormat" => "/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", //上传保存路径
+                    "imageRoot" => Yii::getAlias("@webroot"),
+                ],
+            ]
+        ];
     }
 }

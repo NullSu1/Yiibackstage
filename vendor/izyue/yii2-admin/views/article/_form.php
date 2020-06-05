@@ -11,25 +11,31 @@ use yii\widgets\ActiveForm;
 ?>
 <div class="row">
     <div class="col-lg-12">
-        <section class="panel">
-            <div class="panel-body">
-                <?php $form = ActiveForm::begin(); ?>
-                <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
+        <section class="wrapper site-min-height">
+            <section class="panel">
+                <div class="panel-body">
+                    <?php $form = ActiveForm::begin(); ?>
+                    <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'article_title')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'article_title')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'updated_at')->textInput() ?>
 
-                <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+                    <?= $form->field($model, 'content')->widget('kucha\ueditor\UEditor', [
+                        'clientOptions' => [
+                            //编辑区域大小
+                            'initialFrameHeight' => '200',
+                            //设置语言
+                            'lang' => 'en', //中文为 zh-cn
+                        ]
+                    ]); ?>
 
-                <?= $form->field($model, 'created_at')->textInput() ?>
-
-                <?= $form->field($model, 'updated_at')->textInput(['maxlength' => true]) ?>
-
-                <div class="form-group">
+                    <div class="form-group">
                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                </div>
+                    </div>
 
-                <?php ActiveForm::end(); ?>
-            </div>
+                    <?php ActiveForm::end(); ?>
+                </div>
+            </section>
         </section>
     </div>
 </div>

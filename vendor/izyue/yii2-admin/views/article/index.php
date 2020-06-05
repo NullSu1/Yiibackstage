@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
+$this->title = Yii::t('rbac-admin', 'Articles');;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">

@@ -281,7 +281,7 @@ class AssignmentController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        MenuHelper::invalidate();
+//        MenuHelper::invalidate();
 
         return $this->redirect(['index']);
     }
