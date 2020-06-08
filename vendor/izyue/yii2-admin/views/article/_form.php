@@ -18,12 +18,12 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
 
                     <?= $form->field($model, 'article_title')->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($model, 'updated_at')->textInput() ?>
 
                     <?= $form->field($model, 'content')->widget('kucha\ueditor\UEditor', [
                         'clientOptions' => [
                             //编辑区域大小
-                            'initialFrameHeight' => '200',
+                            'initialFrameHeight' => '450',
+                            'initialFrameWidth' => '800',
                             //设置语言
                             'lang' => 'en', //中文为 zh-cn
                         ]

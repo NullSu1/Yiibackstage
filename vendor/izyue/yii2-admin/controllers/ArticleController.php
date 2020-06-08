@@ -126,7 +126,8 @@ class ArticleController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+            $model->updated_at = time();
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -145,6 +146,7 @@ class ArticleController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        Helper::invalidate();
 
         return $this->redirect(['index']);
     }

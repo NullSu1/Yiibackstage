@@ -65,7 +65,9 @@ class Article extends ArticleModel
 
         $query->andFilterWhere(['like', 'user', $this->user])
             ->andFilterWhere(['like', 'article_title', $this->article_title])
-            ->andFilterWhere(['like', 'content', $this->content]);
+            ->andFilterWhere(['like', 'content', $this->content])
+            ->andFilterWhere(['like', 'created_at', $this->created_at])
+            ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 
         return $dataProvider;
     }

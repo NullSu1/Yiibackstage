@@ -40,7 +40,7 @@ use yii\helpers\ArrayHelper;
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
  * @since 1.0
  */
-class MenuHelper
+class MenuHelper extends Helper
 {
     /**
      * Use to get assigned menu of user.

@@ -88,8 +88,9 @@ class RuleController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Helper::invalidate();
+//            Helper::invalidate();
 
+            
             return $this->redirect(['view', 'id' => $model->name]);
         }
 
