@@ -103,9 +103,9 @@ class ArticleController extends Controller
         $model = new Article;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->author = Yii::$app->user->identity['username'];
-            $model->created_at = date('Y-m-d H:i:s');
-            $model->save();
+            $author = Yii::$app->user->identity['username'];
+            $date = date('Y-m-d H:i:s');
+            Yii::$app->db->createCommand("insert into article (updated_at, created_at, author) values ('$date', '$date', '$author')='$date' where id='$id'")->execute();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -126,8 +126,8 @@ class ArticleController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->updated_at = time();
-            $model->save();
+            $date = date('Y-m-d H:i:s');
+            Yii::$app->db->createCommand("update article set updated_at='$date' where id='$id'")->execute();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -145,10 +145,10 @@ class ArticleController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        Helper::invalidate();
-
+        Yii::$app->db->createCommand()->delete('article', "id='$id'")->execute();
         return $this->redirect(['index']);
+//        $this->findModel($id)->delete();
+
     }
 
     /**

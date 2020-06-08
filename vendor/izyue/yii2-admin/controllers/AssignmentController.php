@@ -280,7 +280,7 @@ class AssignmentController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        Yii::$app->db->createCommand()->delete('admin', "id='$id'")->execute();
         Helper::invalidate();
 
         return $this->redirect(['index']);

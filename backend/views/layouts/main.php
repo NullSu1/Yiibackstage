@@ -129,6 +129,7 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon=false)
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
+    <link rel="icon" href="../assets/image/log.svg" type="image/x-icon">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
@@ -142,7 +143,7 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon=false)
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="<?=Url::home()?>" class="logo">YII<span>RBAC</span></a>
+        <a href="<?=Url::home()?>" class="logo">YII<span>Backend</span></a>
         <!--logo end-->
         <div class="top-nav ">
             <!--search & user info start-->
