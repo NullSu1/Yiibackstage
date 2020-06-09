@@ -59,7 +59,7 @@ class ActionColumn extends Column
      *
      * @see buttons
      */
-    public $template = '{view} {update} {delete}';
+    public $template = '{view} {update} {delete} {retrieve} {softdelete}';
     /**
      * @var array button rendering callbacks. The array keys are the button names (without curly brackets),
      * and the values are the corresponding button rendering callbacks. The callbacks should use the following
@@ -142,12 +142,25 @@ class ActionColumn extends Column
      */
     protected function initDefaultButtons()
     {
-        $this->initDefaultButton('view', 'eye-open');
-        $this->initDefaultButton('update', 'pencil');
-        $this->initDefaultButton('delete', 'trash', [
-            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-            'data-method' => 'post',
-        ]);
+
+
+        if (Yii::$app->controller->action->id == 'index') {
+            $this->initDefaultButton('view', 'eye-open');
+            $this->initDefaultButton('update', 'pencil');
+            $this->initDefaultButton('softdelete', 'trash', [
+                'data-confirm' => Yii::t('yii', 'you will remove this item?'),
+                'data-method' => 'post',
+            ]);
+        } else {
+            $this->initDefaultButton('retrieve', 'random', [
+                'data-confirm' => Yii::t('yii', 'you will retrieve this item?'),
+                'data-method' => 'post',
+            ]);
+            $this->initDefaultButton('delete', 'trash', [
+                'data-confirm' => Yii::t('yii', 'you will delete this item?'),
+                'data-method' => 'post',
+            ]);
+        }
     }
 
     /**
@@ -170,6 +183,9 @@ class ActionColumn extends Column
                         break;
                     case 'delete':
                         $title = Yii::t('yii', 'Delete');
+                        break;
+                    case 'retrieve':
+                        $title = Yii::t('yii', 'Retrieve');
                         break;
                     default:
                         $title = ucfirst($name);

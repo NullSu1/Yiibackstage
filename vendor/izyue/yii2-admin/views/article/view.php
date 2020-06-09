@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <p>
                     <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                    <?= Html::a('Delete', ['softdelete', 'id' => $model->id], [
                         'class' => 'btn btn-danger',
                         'data' => [
                             'confirm' => 'You will delete this item?',
@@ -35,11 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         'id',
                         'user',
                         'article_title',
-                        'content:ntext',
                         'created_at',
                         'updated_at',
                     ],
                 ]) ?>
+                <h3>Content</h3>
+                <?= html::decode($model->content) ?>
             </section>
         </section>
     </div>

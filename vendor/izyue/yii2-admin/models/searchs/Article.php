@@ -39,7 +39,7 @@ class Article extends ArticleModel
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$type = true)
     {
         $query = ArticleModel::find();
 
@@ -61,13 +61,21 @@ class Article extends ArticleModel
         $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+//            'author' => 'admin',
         ]);
+
+        
 
         $query->andFilterWhere(['like', 'user', $this->user])
             ->andFilterWhere(['like', 'article_title', $this->article_title])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'created_at', $this->created_at])
-            ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
+            ->andFilterWhere(['like', 'content', $this->content]);
+
+        if($type){
+            $query->andFilterWhere(['softdelete'=>1]);
+        }else{
+            $query->andFilterWhere(['softdelete'=>0]);
+        }
 
         return $dataProvider;
     }

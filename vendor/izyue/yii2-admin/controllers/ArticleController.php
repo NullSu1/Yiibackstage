@@ -105,7 +105,7 @@ class ArticleController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $author = Yii::$app->user->identity['username'];
             $date = date('Y-m-d H:i:s');
-            Yii::$app->db->createCommand("insert into article (updated_at, created_at, author) values ('$date', '$date', '$author')='$date' where id='$id'")->execute();
+            Yii::$app->db->createCommand("update article set updated_at='$date', created_at='$date', author='$author' where id='$model->id' ")->execute();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -143,12 +143,19 @@ class ArticleController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionSoftdelete($id)
     {
-        Yii::$app->db->createCommand()->delete('article', "id='$id'")->execute();
+        $model = $this->findModel($id);
+        $model->softdelete = 0;
+        $model->update();
         return $this->redirect(['index']);
-//        $this->findModel($id)->delete();
 
+
+    }
+    public function actionDelete($id){
+        Yii::$app->db->createCommand()->delete('article', "id='$id'")->execute();
+        return $this->redirect(['recycle']);
+//        $this->findModel($id)->delete();
     }
 
     /**
@@ -178,5 +185,24 @@ class ArticleController extends Controller
                 ],
             ]
         ];
+    }
+    public function actionRecycle()
+    {
+        $searchModel = new ArticleSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, false);
+
+        return $this->render('delete', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    public function actionRetrieve($id)
+    {
+        $model = $this->findModel($id);
+        $model->softdelete = 1;
+        $model->update();
+        return $this->redirect(['recycle']);
     }
 }

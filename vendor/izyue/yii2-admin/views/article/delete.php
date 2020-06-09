@@ -7,21 +7,17 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('rbac-admin', 'Articles');;
+$this->title = 'Articles Recycle bin';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-lg-12">
         <section class="wrapper site-min-height">
             <section class="panel">
+
                 <h1><?= Html::encode($this->title) ?></h1>
 
-                <p>
-                    <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
-                </p>
-                <p>
-                    <?= Html::a('Recycle bin', ['recycle'], ['class' => 'btn btn-success']) ?>
-                </p>
+                <?= Html::a('Back', ['index'],['class' => 'btn btn-success']) ?>
 
                 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -41,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\ActionColumn'],
                     ],
                 ]); ?>
+
             </section>
         </section>
     </div>
