@@ -62,6 +62,7 @@ class SiteController extends Controller
     {
         $this->layout = 'login.php';
         if (!Yii::$app->user->isGuest) {
+//            echo "<script>alert('123')</script>";die();
             return $this->goHome();
         }
 

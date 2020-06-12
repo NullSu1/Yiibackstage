@@ -1,0 +1,288 @@
+2020-06-03 14:26:37 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php:687
+Stack trace:
+#0 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(687): PDO->__construct('mysql:host=127....', 'root', 'root', NULL)
+#1 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(613): yii\db\Connection->createPdoInstance()
+#2 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(996): yii\db\Connection->open()
+#3 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(983): yii\db\Connection->getMasterPdo()
+#4 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(253): yii\db\Connection->getSlavePdo()
+#5 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(1143): yii\db\Command->prepare(true)
+#6 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(312): yii\db\Command->queryAll()
+#8 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(125): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(744): yii\db\mysql\Schema->loadTableSchema('migration')
+#10 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(194): yii\db\Schema->getTableMetadata('{{%migration}}', 'schema', true)
+#11 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\MigrateController.php(210): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#12 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(875): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#13 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(166): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#14 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#15 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#16 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#17 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Controller.php(148): yii\base\Controller->runAction('', Array)
+#18 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Module.php(528): yii\console\Controller->runAction('', Array)
+#19 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#20 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#21 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#22 D:\wamp\www\YII2.0RABC\yii(27): yii\base\Application->run()
+#23 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php:624
+Stack trace:
+#0 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(996): yii\db\Connection->open()
+#1 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(983): yii\db\Connection->getMasterPdo()
+#2 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(253): yii\db\Connection->getSlavePdo()
+#3 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(1143): yii\db\Command->prepare(true)
+#4 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(312): yii\db\Command->queryAll()
+#6 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(125): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(744): yii\db\mysql\Schema->loadTableSchema('migration')
+#8 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(194): yii\db\Schema->getTableMetadata('{{%migration}}', 'schema', true)
+#9 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\MigrateController.php(210): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#10 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(875): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#11 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(166): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#12 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#13 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#14 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#15 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Controller.php(148): yii\base\Controller->runAction('', Array)
+#16 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Module.php(528): yii\console\Controller->runAction('', Array)
+#17 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#18 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#19 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#20 D:\wamp\www\YII2.0RABC\yii(27): yii\base\Application->run()
+#21 {main}
+Additional Information:
+
+2020-06-03 14:26:37 [-][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'ACLOCAL_PATH' => '/mingw64/share/aclocal:/usr/share/aclocal'
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\DF\\AppData\\Roaming'
+    'COMMONPROGRAMFILES' => 'C:\\Program Files\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'WEB-XULE'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'CONFIG_SITE' => '/mingw64/etc/config.site'
+    'DISPLAY' => 'needs-to-be-defined'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'EXEPATH' => 'D:\\Program Files\\Git'
+    'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer'
+    'FPS_BROWSER_USER_PROFILE_STRING' => 'Default'
+    'HOME' => 'C:\\Users\\DF'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\DF'
+    'HOSTNAME' => 'web-xule'
+    'INFOPATH' => '/usr/local/info:/usr/share/info:/usr/info:/share/info'
+    'LANG' => 'zh_CN.UTF-8'
+    'LOCALAPPDATA' => 'C:\\Users\\DF\\AppData\\Local'
+    'LOGONSERVER' => '\\\\WEB-XULE'
+    'MANPATH' => '/mingw64/local/man:/mingw64/share/man:/usr/local/man:/usr/share/man:/usr/man:/share/man'
+    'MINGW_CHOST' => 'x86_64-w64-mingw32'
+    'MINGW_PACKAGE_PREFIX' => 'mingw-w64-x86_64'
+    'MINGW_PREFIX' => '/mingw64'
+    'MSYSTEM' => 'MINGW64'
+    'MSYSTEM_CARCH' => 'x86_64'
+    'MSYSTEM_CHOST' => 'x86_64-w64-mingw32'
+    'MSYSTEM_PREFIX' => '/mingw64'
+    'NUMBER_OF_PROCESSORS' => '12'
+    'OLDPWD' => '/d/wamp/www'
+    'OneDrive' => 'C:\\Users\\DF\\OneDrive'
+    'ORIGINAL_PATH' => 'D:\\Program Files\\Git\\mingw64\\bin;D:\\Program Files\\Git\\usr\\bin;C:\\Users\\DF\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files\\TortoiseGit\\bin;D:\\Program Files\\Git\\cmd;D:\\wnmp\\mysql\\bin;D:\\wnmp\\nginx-1.19.0;D:\\wamp\\bin\\php\\php7.2.25;D:\\composer;C:\\composer;C:\\Users\\DF\\AppData\\Local\\Microsoft\\WindowsApps;D:\\Users\\DF\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;D:\\Program Files\\Bandizip;C:\\Users\\DF\\AppData\\Roaming\\Composer\\vendor\\bin;D:\\wamp\\bin\\php\\php7.2.25'
+    'ORIGINAL_TEMP' => '/tmp'
+    'ORIGINAL_TMP' => '/tmp'
+    'OS' => 'Windows_NT'
+    'PATH' => 'C:\\Users\\DF\\bin;D:\\Program Files\\Git\\mingw64\\bin;D:\\Program Files\\Git\\usr\\local\\bin;D:\\Program Files\\Git\\usr\\bin;D:\\Program Files\\Git\\usr\\bin;D:\\Program Files\\Git\\mingw64\\bin;D:\\Program Files\\Git\\usr\\bin;C:\\Users\\DF\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files\\TortoiseGit\\bin;D:\\Program Files\\Git\\cmd;D:\\wnmp\\mysql\\bin;D:\\wnmp\\nginx-1.19.0;D:\\wamp\\bin\\php\\php7.2.25;D:\\composer;C:\\composer;C:\\Users\\DF\\AppData\\Local\\Microsoft\\WindowsApps;D:\\Users\\DF\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;D:\\Program Files\\Bandizip;C:\\Users\\DF\\AppData\\Roaming\\Composer\\vendor\\bin;D:\\wamp\\bin\\php\\php7.2.25;D:\\Program Files\\Git\\usr\\bin\\vendor_perl;D:\\Program Files\\Git\\usr\\bin\\core_perl'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PKG_CONFIG_PATH' => '/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig'
+    'PLINK_PROTOCOL' => 'ssh'
+    'PROCESSOR_ARCHITECTURE' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD'
+    'PROCESSOR_LEVEL' => '23'
+    'PROCESSOR_REVISION' => '0802'
+    'ProgramData' => 'C:\\ProgramData'
+    'PROGRAMFILES' => 'C:\\Program Files'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PS1' => '\\[\\033]0;$TITLEPREFIX:$PWD\\007\\]\\n\\[\\033[32m\\]\\u@\\h \\[\\033[35m\\]$MSYSTEM \\[\\033[33m\\]\\w\\[\\033[36m\\]`__git_ps1`\\[\\033[0m\\]\\n$ '
+    'PSModulePath' => 'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'PWD' => '/d/wamp/www/YII2.0RABC'
+    'SESSIONNAME' => 'Console'
+    'SHELL' => 'D:\\Program Files\\Git\\usr\\bin\\bash.exe'
+    'SHLVL' => '1'
+    'SSH_ASKPASS' => '/mingw64/libexec/git-core/git-gui--askpass'
+    'SYSTEMDRIVE' => 'C:'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\DF\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\DF\\AppData\\Local\\Temp'
+    'TMPDIR' => 'C:\\Users\\DF\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'WEB-XULE'
+    'USERDOMAIN_ROAMINGPROFILE' => 'WEB-XULE'
+    'USERNAME' => 'DF'
+    'USERPROFILE' => 'C:\\Users\\DF'
+    'WINDIR' => 'C:\\Windows'
+    '_' => '/usr/bin/winpty'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1591165597.712
+    'REQUEST_TIME' => 1591165597
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate'
+        2 => '--migrationPath=@yii/rbac/migrations'
+    ]
+    'argc' => 3
+]
+2020-06-03 14:26:55 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php:687
+Stack trace:
+#0 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(687): PDO->__construct('mysql:host=127....', 'root', 'root', NULL)
+#1 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(613): yii\db\Connection->createPdoInstance()
+#2 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(996): yii\db\Connection->open()
+#3 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(983): yii\db\Connection->getMasterPdo()
+#4 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(253): yii\db\Connection->getSlavePdo()
+#5 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(1143): yii\db\Command->prepare(true)
+#6 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(312): yii\db\Command->queryAll()
+#8 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(125): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(744): yii\db\mysql\Schema->loadTableSchema('migration')
+#10 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(194): yii\db\Schema->getTableMetadata('{{%migration}}', 'schema', true)
+#11 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\MigrateController.php(210): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#12 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(875): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#13 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(166): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#14 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#15 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#16 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#17 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Controller.php(148): yii\base\Controller->runAction('', Array)
+#18 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Module.php(528): yii\console\Controller->runAction('', Array)
+#19 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#20 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#21 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#22 D:\wamp\www\YII2.0RABC\yii(27): yii\base\Application->run()
+#23 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php:624
+Stack trace:
+#0 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(996): yii\db\Connection->open()
+#1 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Connection.php(983): yii\db\Connection->getMasterPdo()
+#2 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(253): yii\db\Connection->getSlavePdo()
+#3 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(1143): yii\db\Command->prepare(true)
+#4 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(312): yii\db\Command->queryAll()
+#6 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\mysql\Schema.php(125): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(744): yii\db\mysql\Schema->loadTableSchema('migration')
+#8 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\db\Schema.php(194): yii\db\Schema->getTableMetadata('{{%migration}}', 'schema', true)
+#9 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\MigrateController.php(210): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#10 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(875): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#11 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(166): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#12 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#13 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#14 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#15 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Controller.php(148): yii\base\Controller->runAction('', Array)
+#16 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Module.php(528): yii\console\Controller->runAction('', Array)
+#17 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#18 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#19 D:\wamp\www\YII2.0RABC\vendor\yiisoft\yii2\base\Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#20 D:\wamp\www\YII2.0RABC\yii(27): yii\base\Application->run()
+#21 {main}
+Additional Information:
+
+2020-06-03 14:26:55 [-][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'ACLOCAL_PATH' => '/mingw64/share/aclocal:/usr/share/aclocal'
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\DF\\AppData\\Roaming'
+    'COMMONPROGRAMFILES' => 'C:\\Program Files\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'WEB-XULE'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'CONFIG_SITE' => '/mingw64/etc/config.site'
+    'DISPLAY' => 'needs-to-be-defined'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'EXEPATH' => 'D:\\Program Files\\Git'
+    'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer'
+    'FPS_BROWSER_USER_PROFILE_STRING' => 'Default'
+    'HOME' => 'C:\\Users\\DF'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\DF'
+    'HOSTNAME' => 'web-xule'
+    'INFOPATH' => '/usr/local/info:/usr/share/info:/usr/info:/share/info'
+    'LANG' => 'zh_CN.UTF-8'
+    'LOCALAPPDATA' => 'C:\\Users\\DF\\AppData\\Local'
+    'LOGONSERVER' => '\\\\WEB-XULE'
+    'MANPATH' => '/mingw64/local/man:/mingw64/share/man:/usr/local/man:/usr/share/man:/usr/man:/share/man'
+    'MINGW_CHOST' => 'x86_64-w64-mingw32'
+    'MINGW_PACKAGE_PREFIX' => 'mingw-w64-x86_64'
+    'MINGW_PREFIX' => '/mingw64'
+    'MSYSTEM' => 'MINGW64'
+    'MSYSTEM_CARCH' => 'x86_64'
+    'MSYSTEM_CHOST' => 'x86_64-w64-mingw32'
+    'MSYSTEM_PREFIX' => '/mingw64'
+    'NUMBER_OF_PROCESSORS' => '12'
+    'OLDPWD' => '/d/wamp/www'
+    'OneDrive' => 'C:\\Users\\DF\\OneDrive'
+    'ORIGINAL_PATH' => 'D:\\Program Files\\Git\\mingw64\\bin;D:\\Program Files\\Git\\usr\\bin;C:\\Users\\DF\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files\\TortoiseGit\\bin;D:\\Program Files\\Git\\cmd;D:\\wnmp\\mysql\\bin;D:\\wnmp\\nginx-1.19.0;D:\\wamp\\bin\\php\\php7.2.25;D:\\composer;C:\\composer;C:\\Users\\DF\\AppData\\Local\\Microsoft\\WindowsApps;D:\\Users\\DF\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;D:\\Program Files\\Bandizip;C:\\Users\\DF\\AppData\\Roaming\\Composer\\vendor\\bin;D:\\wamp\\bin\\php\\php7.2.25'
+    'ORIGINAL_TEMP' => '/tmp'
+    'ORIGINAL_TMP' => '/tmp'
+    'OS' => 'Windows_NT'
+    'PATH' => 'C:\\Users\\DF\\bin;D:\\Program Files\\Git\\mingw64\\bin;D:\\Program Files\\Git\\usr\\local\\bin;D:\\Program Files\\Git\\usr\\bin;D:\\Program Files\\Git\\usr\\bin;D:\\Program Files\\Git\\mingw64\\bin;D:\\Program Files\\Git\\usr\\bin;C:\\Users\\DF\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files\\TortoiseGit\\bin;D:\\Program Files\\Git\\cmd;D:\\wnmp\\mysql\\bin;D:\\wnmp\\nginx-1.19.0;D:\\wamp\\bin\\php\\php7.2.25;D:\\composer;C:\\composer;C:\\Users\\DF\\AppData\\Local\\Microsoft\\WindowsApps;D:\\Users\\DF\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;D:\\Program Files\\Bandizip;C:\\Users\\DF\\AppData\\Roaming\\Composer\\vendor\\bin;D:\\wamp\\bin\\php\\php7.2.25;D:\\Program Files\\Git\\usr\\bin\\vendor_perl;D:\\Program Files\\Git\\usr\\bin\\core_perl'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PKG_CONFIG_PATH' => '/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig'
+    'PLINK_PROTOCOL' => 'ssh'
+    'PROCESSOR_ARCHITECTURE' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD'
+    'PROCESSOR_LEVEL' => '23'
+    'PROCESSOR_REVISION' => '0802'
+    'ProgramData' => 'C:\\ProgramData'
+    'PROGRAMFILES' => 'C:\\Program Files'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PS1' => '\\[\\033]0;$TITLEPREFIX:$PWD\\007\\]\\n\\[\\033[32m\\]\\u@\\h \\[\\033[35m\\]$MSYSTEM \\[\\033[33m\\]\\w\\[\\033[36m\\]`__git_ps1`\\[\\033[0m\\]\\n$ '
+    'PSModulePath' => 'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'PWD' => '/d/wamp/www/YII2.0RABC'
+    'SESSIONNAME' => 'Console'
+    'SHELL' => 'D:\\Program Files\\Git\\usr\\bin\\bash.exe'
+    'SHLVL' => '1'
+    'SSH_ASKPASS' => '/mingw64/libexec/git-core/git-gui--askpass'
+    'SYSTEMDRIVE' => 'C:'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\DF\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\DF\\AppData\\Local\\Temp'
+    'TMPDIR' => 'C:\\Users\\DF\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'WEB-XULE'
+    'USERDOMAIN_ROAMINGPROFILE' => 'WEB-XULE'
+    'USERNAME' => 'DF'
+    'USERPROFILE' => 'C:\\Users\\DF'
+    'WINDIR' => 'C:\\Windows'
+    '_' => '/usr/bin/winpty'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1591165615.5365
+    'REQUEST_TIME' => 1591165615
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate'
+        2 => '--migrationPath=@izyue/admin/migrations'
+    ]
+    'argc' => 3
+]

@@ -38,5 +38,5 @@ $this->registerJs("
 $this->title = 'My Yii Application';
 ?>
 <section class="wrapper">
-
+    <h1>Welcome: <span class="username"><?=Yii::$app->user->identity['username']?></span></h1>
 </section>

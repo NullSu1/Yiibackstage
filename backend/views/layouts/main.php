@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use backend\assets\AppAsset;
@@ -21,7 +22,7 @@ $routeArray = explode('/', $route);
 array_pop($routeArray);
 $controllerName = implode('/', $routeArray);
 
-$this->registerCssFile('@web/statics/css/slidebars.css', ['depends'=>'backend\assets\AppAsset']);
+$this->registerCssFile('@web/statics/css/slidebars.css', ['depends' => 'backend\assets\AppAsset']);
 
 function isSubUrl($menuArray, $route)
 {
@@ -29,8 +30,7 @@ function isSubUrl($menuArray, $route)
     if (isset($menuArray) && is_array($menuArray)) {
 
         if (isset($menuArray['items'])) {
-            foreach ($menuArray['items'] as $item)
-            {
+            foreach ($menuArray['items'] as $item) {
                 if (isSubUrl($item, $route)) {
                     return true;
                 }
@@ -48,7 +48,6 @@ function isSubUrl($menuArray, $route)
         }
     }
     return false;
-
 }
 
 function isSubMenu($menuArray, $controllerName)
@@ -57,31 +56,27 @@ function isSubMenu($menuArray, $controllerName)
     if (isset($menuArray) && is_array($menuArray)) {
 
         if (isset($menuArray['items'])) {
-            foreach ($menuArray['items'] as $item)
-            {
+            foreach ($menuArray['items'] as $item) {
                 if (isSubMenu($item, $controllerName)) {
                     return true;
                 }
             }
         } else {
             $url = is_array($menuArray['url']) ? $menuArray['url'][0] : $menuArray['url'];
-            if (strpos($url, $controllerName.'/')) {
+            if (strpos($url, $controllerName . '/')) {
                 return true;
             }
         }
     } else {
         $url = is_array($menuArray['url']) ? $menuArray['url'][0] : $menuArray['url'];
-        if (strpos($url, $controllerName.'/')) {
+        if (strpos($url, $controllerName . '/')) {
             return true;
         }
     }
     return false;
-
 }
 
-
-
-function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon=false)
+function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
 {
     if (isset($menuArray) && is_array($menuArray)) {
 
@@ -98,27 +93,23 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon=false)
         } else {
             $class = '';
         }
-
         if (isset($menuArray['items'])) {
             echo '<li class="sub-menu">';
         } else {
-            echo '<li class="'.$class.'">';
+            echo '<li class="' . $class . '">';
         }
         $url = $url == '#' ? 'javascript:;' : Url::toRoute($url);
-        echo '<a href="'.$url.'"  class="'.$class.'">'.($isShowIcon ? '<i class="fa fa-sitemap"></i>' : '').'<span>'.$menuArray['label'].'</span></a>';
+        echo '<a href="' . $url . '"  class="' . $class . '">' . ($isShowIcon ? '<i class="fa fa-sitemap"></i>' : '') . '<span>' . $menuArray['label'] . '</span></a>';
 
         if (isset($menuArray['items'])) {
             echo '<ul class="sub">';
-            foreach ($menuArray['items'] as $item)
-            {
+            foreach ($menuArray['items'] as $item) {
                 echo initMenu($item, $controllerName, $isSubUrl);
             }
             echo '</ul>';
         }
-
         echo '</li>';
     }
-
 }
 
 ?>
@@ -129,32 +120,24 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon=false)
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <link rel="icon" href="../assets/image/log.svg" type="image/x-icon">
+    <link type="image/x-icon" href="https://www.yiichina.com/favicon.ico?v=1528501659" rel="shortcut icon">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
-<section id="container" >
-    <!--header start-->
+<section id="container">
     <header class="header white-bg">
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
-        <!--logo start-->
-        <a href="<?=Url::home()?>" class="logo">YII<span>Backend</span></a>
-        <!--logo end-->
+        <a href="<?= Url::home() ?>" class="logo">My<span>Backend</span></a>
         <div class="top-nav ">
-            <!--search & user info start-->
             <ul class="nav pull-right top-menu">
-                <li>
-                    <input type="text" class="form-control search" placeholder="Search">
-                </li>
-                <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="username"><?=Yii::$app->user->identity['username']?></span>
+                        <span class="username"><?= Yii::$app->user->identity['username'] ?></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -162,71 +145,55 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon=false)
                         <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                         <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-                        <li><a href="<?=Url::toRoute('/site/logout')?>" data-method="post"><i class="fa fa-key"></i> Log Out</a></li>
+                        <li><a href="<?= Url::toRoute('/site/logout') ?>" data-method="post"><i class="fa fa-key"></i>
+                                Log Out</a></li>
                     </ul>
                 </li>
-                <!-- user login dropdown end -->
             </ul>
-            <!--search & user info end-->
         </div>
     </header>
-    <!--header end-->
-    <!--sidebar start-->
+
     <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <!-- sidebar menu start-->
+        <div id="sidebar" class="nav-collapse ">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="<?=($controllerName == 'site' ? 'active' : '')?>" href="<?=Url::home()?>">
+                    <a class="<?= ($controllerName == 'site' ? 'active' : '') ?>" href="<?= Url::home() ?>">
                         <i class="fa fa-dashboard"></i>
-                        <span><?=Yii::t('admin', 'dashboard')?></span>
+                        <span><?= Yii::t('admin', 'dashboard') ?></span>
                     </a>
                 </li>
                 <?php
-                    if(isset($menuRows)){
+                if (isset($menuRows)) {
 
-                        $isSubUrl = false;
-                        foreach($menuRows as $menuRow){
+                    $isSubUrl = false;
+                    foreach ($menuRows as $menuRow) {
 
-                            $isSubUrl = isSubUrl($menuRow, $route);
+                        $isSubUrl = isSubUrl($menuRow, $route);
 
-                            if ($isSubUrl) {
-                                break;
-                            }
-
-
-                        }
-                        foreach($menuRows as $menuRow){
-
-                            initMenu($menuRow, $controllerName, $isSubUrl, true);
+                        if ($isSubUrl) {
+                            break;
                         }
                     }
-                ?>
+                    foreach ($menuRows as $menuRow) {
 
+                        initMenu($menuRow, $controllerName, $isSubUrl, true);
+                    }
+                }
+                ?>
             </ul>
-            <!-- sidebar menu end-->
         </div>
     </aside>
-    <!--sidebar end-->
-    <!--main content start-->
     <section id="main-content">
-        <?=$content?>
+        <?= $content ?>
     </section>
-    <!--main content end-->
-
-    <!-- Right Slidebar start -->
-    <!-- Right Slidebar end -->
-
-    <!--footer start-->
     <footer class="site-footer">
         <div class="text-center">
-            2013 &copy; FlatLab by VectorLab.
+            back to top
             <a href="#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>
     </footer>
-    <!--footer end-->
 </section>
 
 <?php $this->endBody() ?>
