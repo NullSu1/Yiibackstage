@@ -32,7 +32,7 @@ $columns = array_merge(
     <!-- page start-->
     <section class="panel">
         <header class="panel-heading">
-            <h1><?=$this->title?></h1>
+            <h1>用户列表</h1>
         </header>
         <div class="panel-body">
             <div class="adv-table editable-table ">

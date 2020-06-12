@@ -8,6 +8,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Articles Recycle bin';
+$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'created_at',
                         'updated_at',
 
-                        ['class' => 'yii\grid\ActionColumn'],
+                        ['class' => 'yii\grid\ArticleColumn'],
                     ],
                 ]); ?>
 
