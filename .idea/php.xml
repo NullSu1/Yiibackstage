@@ -14,7 +14,6 @@
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/cebe/markdown" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/yiidoc/yii2-redactor" />
       <path value="$PROJECT_DIR$/vendor/bower/punycode" />
       <path value="$PROJECT_DIR$/vendor/bower/inputmask" />
       <path value="$PROJECT_DIR$/vendor/bower/yii2-pjax" />
@@ -33,7 +32,8 @@
       <path value="$PROJECT_DIR$/vendor/bower-asset/yii2-pjax" />
       <path value="$PROJECT_DIR$/vendor/bower-asset/typeahead.js" />
       <path value="$PROJECT_DIR$/vendor/kucha/ueditor" />
+      <path value="$PROJECT_DIR$/vendor/yiidoc/yii2-redactor" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />
 </project>

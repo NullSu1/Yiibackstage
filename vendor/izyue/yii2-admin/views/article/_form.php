@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\redactor\widgets\Redactor;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -19,15 +20,17 @@ use yii\widgets\ActiveForm;
 
                     <?= $form->field($model, 'article_title')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'content')->widget('kucha\ueditor\UEditor', [
+                    <?= $form->field($model, 'content')->widget(Redactor::className(),
+                    [
                         'clientOptions' => [
-                            //编辑区域大小
-                            'initialFrameHeight' => '450',
-                            'initialFrameWidth' => '800',
-                            //设置语言
-                            'lang' => 'en', //中文为 zh-cn
+                            'minHeight' => '300px',
+                            'lang' => 'zh_cn',
+                            'plugins' => ['clips', 'counter', 'definedlinks', 'filemanager',
+                                'fontcolor', 'fontfamily', 'fontsize', 'fullscreen',
+                                'imagemanager', 'limiter', 'table', 'textdirection',
+                                'textexpander', 'video','midget']
                         ]
-                    ]); ?>
+                    ]) ?>
 
                     <div class="form-group">
                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

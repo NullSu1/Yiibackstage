@@ -23,5 +23,4 @@ class FileUploadAction extends Action
             }
         }
     }
-
 }

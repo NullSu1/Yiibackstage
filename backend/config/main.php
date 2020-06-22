@@ -17,7 +17,13 @@ return [
             'class' => 'izyue\admin\Module',
 //            'layout' => 'left-menu',
             'layout' => '@app/views/layouts/main.php',
-        ]
+        ],
+        'redactor' => [
+            'class' => 'yii\redactor\RedactorModule',
+            'uploadDir' => '@webroot/upload/image',
+            'uploadUrl' => '@web/upload/image',
+            'imageAllowExtensions'=>['jpg', 'png', 'gif', 'bmp', 'svg', 'jepg']
+        ],
     ],
     'components' => [
         'user' => [

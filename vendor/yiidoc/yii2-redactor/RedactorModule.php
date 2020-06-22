@@ -21,13 +21,13 @@ class RedactorModule extends \yii\base\Module
 {
     public $controllerNamespace = 'yii\redactor\controllers';
     public $defaultRoute = 'upload';
-    public $uploadDir = '@webroot/uploads';
-    public $uploadUrl = '@web/uploads';
+    public $uploadDir = '@webroot/upload/image';
+    public $uploadUrl = '@web/upload/image';
     public $imageUploadRoute = ['/redactor/upload/image'];
     public $fileUploadRoute = ['/redactor/upload/file'];
     public $imageManagerJsonRoute = ['/redactor/upload/image-json'];
     public $fileManagerJsonRoute = ['/redactor/upload/file-json'];
-    public $imageAllowExtensions = ['jpg', 'png', 'gif', 'bmp', 'svg'];
+    public $imageAllowExtensions = ['jpg', 'png', 'gif', 'bmp', 'svg', 'jepg'];
     public $fileAllowExtensions = null;
     public $widgetOptions=[];
     public $widgetClientOptions=[];
@@ -35,7 +35,8 @@ class RedactorModule extends \yii\base\Module
 
     public function getOwnerPath()
     {
-        return Yii::$app->user->isGuest ? 'guest' : Yii::$app->user->id;
+        return date('Ymd');
+//        return Yii::$app->user->isGuest ? 'guest' : Yii::$app->user->id;
     }
 
     /**

@@ -10,14 +10,15 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5",
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "izyue/yii2-admin": "*",
         "yiidoc/yii2-redactor": "*",
         "yiisoft/yii2-imagine": "*",
-        "kucha/ueditor": "*"
+        "kucha/ueditor": "*",
+        "kriss/yii2-wang-editor": "^2.2"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
@@ -37,10 +38,10 @@
     "scripts": {
         "post-install-cmd": "php init --env=Development --overwrite=n"
     },
-    "authors": [
+    "repositories": [
         {
-            "name": "刘李鹏",
-            "email": "liu.lipeng@icloud.com"
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
         }
     ]
 }
