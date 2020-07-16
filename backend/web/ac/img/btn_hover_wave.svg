@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="160.241" preserveAspectRatio="none" viewBox="0 0 320 160.241">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1" y1="0.563" x2="-0.009" y2="0.72" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff7edd"/>
+      <stop offset="1" stop-color="#3a61ff"/>
+    </linearGradient>
+  </defs>
+  <g id="btn_wave" transform="translate(-360 -439.906)">
+    <path id="路径_818" data-name="路径 818" d="M-4749.067-1367.907v-137.157c16.242-4.552,48.153-29.189,99.378-21s64.184,24.809,109.579,23.443,94.8-25.455,111.042-14.986v149.695Z" transform="translate(5109.067 1968)" fill="#005fff"/>
+    <path id="路径_817" data-name="路径 817" d="M-4749.056-1367.853s-.012-123.133-.012-137.211c22.242,12.842,66.889,9.8,88.247,2.448s47.5-24.08,92.9-25.445,86.046,40.949,138.856,10.459v149.695Z" transform="translate(5109.067 1968)" opacity="0.85" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
