@@ -20,8 +20,8 @@ return [
         ],
         'redactor' => [
             'class' => 'yii\redactor\RedactorModule',
-            'uploadDir' => '@webroot/upload/image',
-            'uploadUrl' => '@web/upload/image',
+            'uploadDir' => '/Backstage/backend/web/upload/image',
+            'uploadUrl' => '/Backstage/backend/web/upload/image',
             'imageAllowExtensions'=>['jpg', 'png', 'gif', 'bmp', 'svg', 'jepg']
         ],
     ],

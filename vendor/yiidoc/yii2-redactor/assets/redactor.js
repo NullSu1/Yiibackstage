@@ -78,7 +78,7 @@
         'image', 'indent', 'inline', 'insert', 'keydown', 'keyup',
         'lang', 'line', 'link', 'list', 'modal', 'observe', 'paragraphize',
         'paste', 'placeholder', 'progress', 'selection', 'shortcuts',
-        'tabifier', 'tidy', 'toolbar', 'upload', 'utils', 'linkify'];
+        'tabifier', 'tidy', 'toolbar', 'upload', 'utils', 'linkify','div'];
 
     $.Redactor.opts = {
 
@@ -1081,6 +1081,7 @@
                     this.$textarea = this.$element;
                     this.$box.insertAfter(this.$element).append(this.$editor).append(this.$element);
                     this.$editor.addClass('redactor-editor');
+                    this.$editor.addClass('blog-detail__content windows');
 
                     this.$element.hide();
                 },
@@ -7269,7 +7270,7 @@
                 removeEmpty: function (i, s) {
                     var $s = $($.parseHTML(s));
 
-                    $s.find('.redactor-invisible-space').removeAttr('style').removeAttr('class');
+                    // $s.find('.redactor-invisible-space').removeAttr('style').removeAttr('class');
 
                     if ($s.find('hr, br, img, iframe, source').length !== 0) return;
                     var text = $.trim($s.text());

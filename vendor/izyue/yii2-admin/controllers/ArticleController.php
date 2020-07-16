@@ -130,7 +130,6 @@ class ArticleController extends Controller
             Yii::$app->db->createCommand("update article set updated_at='$date' where id='$id'")->execute();
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
