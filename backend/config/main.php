@@ -20,9 +20,9 @@ return [
         ],
         'redactor' => [
             'class' => 'yii\redactor\RedactorModule',
-            'uploadDir' => '/Backstage/backend/web/upload/image',
-            'uploadUrl' => '/Backstage/backend/web/upload/image',
-            'imageAllowExtensions'=>['jpg', 'png', 'gif', 'bmp', 'svg', 'jepg']
+            'uploadDir' => '@webroot/upload/image',
+            'uploadUrl' => 'http://192.168.6.146/Backstage/backend/web/upload/image',
+            'imageAllowExtensions'=>['jpg', 'png', 'gif']
         ],
     ],
     'components' => [

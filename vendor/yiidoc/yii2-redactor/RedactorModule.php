@@ -21,13 +21,13 @@ class RedactorModule extends \yii\base\Module
 {
     public $controllerNamespace = 'yii\redactor\controllers';
     public $defaultRoute = 'upload';
-    public $uploadDir = '/Backstage/backend/web/upload/image';
-    public $uploadUrl = '/Backstage/backend/web/upload/image';
+    public $uploadDir = '@webroot/upload/image';
+    public $uploadUrl = '192.168.6.146/Backstage/backend/web/upload/image';
     public $imageUploadRoute = ['/redactor/upload/image'];
     public $fileUploadRoute = ['/redactor/upload/file'];
     public $imageManagerJsonRoute = ['/redactor/upload/image-json'];
     public $fileManagerJsonRoute = ['/redactor/upload/file-json'];
-    public $imageAllowExtensions = ['jpg', 'png', 'gif', 'bmp', 'svg', 'jepg'];
+    public $imageAllowExtensions = ['jpg', 'png', 'gif'];
     public $fileAllowExtensions = null;
     public $widgetOptions=[];
     public $widgetClientOptions=[];

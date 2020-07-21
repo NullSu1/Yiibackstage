@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
                             'plugins' => ['clips', 'counter', 'definedlinks', 'filemanager',
                                 'fontcolor', 'fontfamily', 'fontsize', 'fullscreen',
                                 'imagemanager', 'limiter', 'table', 'textdirection',
-                                'textexpander', 'video','midget']
+                                'textexpander']
                         ]
                     ]) ?>
 
