@@ -23,6 +23,7 @@ array_pop($routeArray);
 $controllerName = implode('/', $routeArray);
 
 $this->registerCssFile('@web/statics/css/slidebars.css', ['depends' => 'backend\assets\AppAsset']);
+$this->registerCssFile('@web/statics/css/main.css', ['depends' => 'backend\assets\AppAsset']);
 
 function isSubUrl($menuArray, $route)
 {
@@ -124,7 +125,6 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <style type="text/css">
-
         q:before,
         q:after {
             content: none;
@@ -1842,7 +1842,28 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
     </style>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php $this->beginBody();
+//        NavBar::begin([
+//            'brandLabel' => 'BackStage',
+//            'brandUrl' => Yii::$app->homeUrl,
+//            'options' => [
+//                'class' => 'navbar-inverse navbar-fixed-top',
+//            ],
+//        ]);
+//        echo Nav::widget([
+//            'options' => ['class' => 'navbar-nav navbar-right'],
+//            'items' => [
+//                ['label' => 'Home', 'url'=> ['/']],
+//                ['label' => 'Article', 'url' => ['/admin/article/index']],
+//                ['label' => Yii::$app->user->identity['username'], 'items'=>[
+//                        ['label' => 'Profile', 'url' => ['/admin/assignment/update','id'=>Yii::$app->user->identity['id']]],
+//                        ['label' => 'Log Out', 'url'=> ['/site/logout'], 'options' => ["data-method"=>"post"]],
+//                    ]
+//                ],
+//            ],
+//        ]);
+//        NavBar::end();
+?>
 
 <section id="container">
     <header class="header white-bg">
