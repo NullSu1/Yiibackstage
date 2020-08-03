@@ -4691,8 +4691,10 @@
 
                     this.link.$inputUrl = $('#redactor-link-url');
                     this.link.$inputText = $('#redactor-link-url-text');
+                    this.link.$inputTitle = $('#redactor-link-url-title');
 
                     this.link.$inputText.val(this.link.text);
+                    this.link.$inputTitle.val(this.link.title);
                     this.link.$inputUrl.val(this.link.url);
 
                     this.link.buttonInsert.on('click', $.proxy(this.link.insert, this));
@@ -4744,6 +4746,7 @@
                     var target = '';
                     var link = this.link.$inputUrl.val();
                     var text = this.link.$inputText.val();
+                    var title = this.link.$inputTitle.val();
 
                     if ($.trim(link) === '') {
                         this.link.$inputUrl.addClass('redactor-input-error').on('keyup', function () {
@@ -4775,11 +4778,12 @@
                         }
                     }
 
-                    this.link.set(text, link, target);
+                    this.link.set(title, text, link, target);
                     this.modal.close();
                 },
-                set: function (text, link, target) {
+                set: function (title, text, link, target) {
                     text = $.trim(text.replace(/<|>/g, ''));
+                    title = $.trim(title.replace(/<|>/g, ''));
 
                     this.selection.restore();
 
@@ -4804,6 +4808,7 @@
                         }
 
                         $link.attr('href', link);
+                        $link.attr('title', title);
                         $el.text(text);
 
                         if (target !== '') {
@@ -4819,7 +4824,7 @@
                     }
                     else {
                         if (this.utils.browser('mozilla') && this.link.text === '') {
-                            var $a = $('<a />').attr('href', link).text(text);
+                            var $a = $('<a />').attr('href', link).attr('title', title).text(text);
                             if (target !== '') $a.attr('target', target);
 
                             this.insert.node($a);
@@ -4828,7 +4833,7 @@
                         else {
                             var $a;
                             if (this.utils.browser('msie')) {
-                                $a = $('<a href="' + link + '">').text(text);
+                                $a = $('<a href="' + link + '" title="' + title + '">').text(text);
                                 if (target !== '') $a.attr('target', target);
 
                                 $a = $(this.insert.node($a));
@@ -5099,6 +5104,8 @@
                         + '<input type="url" id="redactor-link-url" />'
                         + '<label>' + this.lang.get('text') + '</label>'
                         + '<input type="text" id="redactor-link-url-text" />'
+                        + '<label>' + this.lang.get('title') + '</label>'
+                        + '<input type="text" id="redactor-link-url-title" />'
                         + '<label><input type="checkbox" id="redactor-link-blank"> ' + this.lang.get('link_new_tab') + '</label>'
                         + '</section>'
                     };
@@ -5116,7 +5123,7 @@
                     $modal.prepend(this.modal.$tabber);
                 },
                 addTab: function (id, name, active) {
-                    var $tab = $('<a href="#" rel="tab' + id + '">').text(name);
+                    var $tab = $('<a href="#" rel="tab' + id + '" title="' + this.setTitle + '">').text(name);
                     if (active) {
                         $tab.addClass('active');
                     }

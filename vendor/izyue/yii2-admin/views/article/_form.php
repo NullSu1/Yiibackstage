@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
                         'clientOptions' => [
                             'minHeight' => '300px',
                             'lang' => 'zh_cn',
-                            'plugins' => ['clips', 'counter', 'definedlinks', 'filemanager',
+                            'plugins' => ['clips', 'counter',  'filemanager',
                                 'fontcolor', 'fontfamily', 'fontsize', 'fullscreen',
                                 'imagemanager', 'limiter', 'table', 'textdirection',
                                 'textexpander']
