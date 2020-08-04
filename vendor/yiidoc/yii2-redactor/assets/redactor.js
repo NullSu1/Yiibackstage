@@ -4730,11 +4730,13 @@
                         this.link.$node = $el;
 
                         this.link.url = $el.attr('href');
+                        this.link.title = $el.attr('title');
                         this.link.text = $el.text();
                         this.link.target = $el.attr('target');
                     }
                     else {
                         this.link.text = this.sel.toString();
+                        this.link.title = this.sel.toString();
                         this.link.url = '';
                         this.link.target = '';
                     }
@@ -4782,8 +4784,8 @@
                     this.modal.close();
                 },
                 set: function (title, text, link, target) {
-                    text = $.trim(text.replace(/<|>/g, ''));
-                    title = $.trim(title.replace(/<|>/g, ''));
+                    text = $.trim(text.replace(/\\d/g, ''));
+                    title = $.trim(title.replace(/\\d/g, ''));
 
                     this.selection.restore();
 
@@ -5105,7 +5107,7 @@
                         + '<label>' + this.lang.get('text') + '</label>'
                         + '<input type="text" id="redactor-link-url-text" />'
                         + '<label>' + this.lang.get('title') + '</label>'
-                        + '<input type="text" id="redactor-link-url-title" />'
+                        + '<input type="text" id="redactor-link-url-title"/>'
                         + '<label><input type="checkbox" id="redactor-link-blank"> ' + this.lang.get('link_new_tab') + '</label>'
                         + '</section>'
                     };
@@ -5203,7 +5205,7 @@
                     $(document).off('focusin.modal');
 
                     // enter
-                    this.$modal.find('input[type=text],input[type=url],input[type=email]').on('keydown.redactor-modal', $.proxy(this.modal.setEnter, this));
+                    this.$modal.find('input[type=text],input[type=title],input[type=url],input[type=email]').on('keydown.redactor-modal', $.proxy(this.modal.setEnter, this));
                 },
                 showOnDesktop: function () {
                     var height = this.$modal.outerHeight();
@@ -5463,7 +5465,7 @@
 
                     if (href.length > 24) href = href.substring(0, 24) + '...';
 
-                    var aLink = $('<a href="' + $link.attr('href') + '" target="_blank" />').html(href).addClass('redactor-link-tooltip-action');
+                    var aLink = $('<a href="' + $link.attr('href') + '" title="' + $link.attr('title') + '" target="_blank" />').html(href).addClass('redactor-link-tooltip-action');
                     var aEdit = $('<a href="#" />').html(this.lang.get('edit')).on('click', $.proxy(this.link.show, this)).addClass('redactor-link-tooltip-action');
                     var aUnlink = $('<a href="#" />').html(this.lang.get('unlink')).on('click', $.proxy(this.link.unlink, this)).addClass('redactor-link-tooltip-action');
 

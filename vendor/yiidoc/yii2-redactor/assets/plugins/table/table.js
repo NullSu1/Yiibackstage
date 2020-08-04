@@ -124,7 +124,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
                 var $table = $(this.selection.getParent()).closest('table');
 
                 if (!this.utils.isRedactorParent($table)) return false;
-                if ($table.size() === 0) return false;
+                if ($table.length === 0) return false;
 
                 return $table;
             },

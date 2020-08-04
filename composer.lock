@@ -507,7 +507,7 @@
             "time": "2018-01-23T07:37:21+00:00"
         },
         {
-            "name": "yiidoc/yii2-redactor",
+            "name": "yii2-redactor",
             "version": "2.0.1",
             "source": {
                 "type": "git",

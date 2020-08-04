@@ -15,7 +15,7 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "izyue/yii2-admin": "*",
-        "yiidoc/yii2-redactor": "*",
+        "yii2-redactor": "*",
         "yiisoft/yii2-imagine": "*",
         "kucha/ueditor": "*"
     },

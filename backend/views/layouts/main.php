@@ -1345,6 +1345,13 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
             transition: all 0.3s;
         }
 
+        .blog-detail__content .download .btn-apps .btn-apps__links:first-child .btn-download-green {
+            padding-left: 20%;
+        }
+
+        .blog-detail__content .download .btn-apps .btn-apps__links:last-child .btn-download-green {
+            padding-right: 20%;
+        }
         .blog-detail__content button.btn-download-green {
             padding: 0 22px 0 24px;
             min-width: 240px;
@@ -1353,6 +1360,11 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
             -webkit-box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
             border-radius: 5px;
+        }
+        a.btn-windows{
+            text-decoration:none
+        }a.btn-buy{
+            text-decoration:none
         }
 
         .blog-detail__content button.btn-download-green:hover {
@@ -1878,10 +1890,11 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
                         <span class="username"><?= Yii::$app->user->identity['username'] ?></span>
                         <b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu extended logout">
-                        <div class="log-arrow-up"></div>
+                    <ul class="dropdown-menu">
                         <li><a href="/index.php?r=admin%2Fassignment%2Fupdate&id=<?= Yii::$app->user->identity['id'] ?>">
-                                <i class=" fa fa-suitcase"></i>Profile</a></li>
+                                <i class=" fa fa-suitcase">Profile</i>
+                            </a>
+                        </li>
                         <li><a href="<?= Url::toRoute('/site/logout') ?>" data-method="post"><i class="fa fa-key"></i>
                                 Log Out</a></li>
                     </ul>
