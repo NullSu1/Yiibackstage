@@ -2,6 +2,7 @@
 
 use izyue\admin\models\searchs\Category as CategorySearch;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\redactor\widgets\Redactor;
 use yii\widgets\ActiveForm;
 
@@ -11,11 +12,7 @@ use yii\widgets\ActiveForm;
 
 $query = new \yii\db\Query();
 $query->from('category');
-foreach ($query->batch() as $arr){
-    foreach ($arr as $a){
-        var_dump($a)."<br>";
-    }
-}
+foreach($query->batch() as $arr){}
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -24,7 +21,7 @@ foreach ($query->batch() as $arr){
                 <div class="panel-body">
                     <?php $form = ActiveForm::begin(); ?>
                     <?= $form->field($model, 'language')->dropDownList(['en'=>'en']) ?>
-                    <?= $form->field($model, 'category')->dropDownList(['en'=>'en']) ?>
+                    <?= $form->field($model, 'category')->dropDownList([ArrayHelper::map($arr, 'sortname', 'sortname')]) ?>
                     <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'SEO_title')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'SEO_url')->textInput(['maxlength' => true]) ?>
