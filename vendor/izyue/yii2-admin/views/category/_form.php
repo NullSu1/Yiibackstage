@@ -18,9 +18,6 @@ use yii\widgets\ActiveForm;
                 <?php $form = ActiveForm::begin(); ?>
                 <?= $form->field($model, 'sortname')->textInput() ?>
                 <?= $form->field($model, 'language')->dropDownList(['en' => 'en']) ?>
-<!--                --><?//= $form->field($model, 'updated_at')->textInput() ?>
-<!--                --><?//= $form->field($model, 'created_at')->textInput() ?>
-
                 <div class="form-group">
                     <?= Html::submitButton('Save', ['class' => 'btn btn-danger']) ?>
                 </div>
