@@ -29,8 +29,8 @@ class Category extends \common\models\base\BaseModel
     public function rules()
     {
         return [
-            [['language', 'created_at', 'updated_at'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['language'], 'required'],
+            [['created_at', 'updated_at'], 'string', 'max' => 20],
             [['sortname'], 'string', 'max' => 255],
             [['language'], 'string', 'max' => 3],
         ];

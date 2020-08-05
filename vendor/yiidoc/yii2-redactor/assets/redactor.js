@@ -4811,6 +4811,7 @@
 
                         $link.attr('href', link);
                         $link.attr('title', title);
+                        $link.attr('textvalue', text)
                         $el.text(text);
 
                         if (target !== '') {
@@ -4826,7 +4827,7 @@
                     }
                     else {
                         if (this.utils.browser('mozilla') && this.link.text === '') {
-                            var $a = $('<a />').attr('href', link).attr('title', title).text(text);
+                            var $a = $('<a />').attr('href', link).attr('title', title).attr('textvalue', text).text(text);
                             if (target !== '') $a.attr('target', target);
 
                             this.insert.node($a);
@@ -4835,7 +4836,7 @@
                         else {
                             var $a;
                             if (this.utils.browser('msie')) {
-                                $a = $('<a href="' + link + '" title="' + title + '">').text(text);
+                                $a = $('<a href="' + link + '" title="' + title + '" textvalue="' + text + '">').text(text);
                                 if (target !== '') $a.attr('target', target);
 
                                 $a = $(this.insert.node($a));

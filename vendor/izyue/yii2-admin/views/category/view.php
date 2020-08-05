@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'sortname',
                                     'language',
                                     'created_at',
+                                    'updated_at',
                                 ],
                             ]) ?>
                         </div>
