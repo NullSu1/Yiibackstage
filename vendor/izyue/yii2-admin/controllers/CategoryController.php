@@ -69,7 +69,7 @@ class CategoryController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $date = date('Y-m-d H:i:s');
             Yii::$app->db->createCommand("update category set updated_at='$date', created_at='$date' where id='$model->id' ")->execute();
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -91,7 +91,7 @@ class CategoryController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $date = date('Y-m-d H:i:s');
             Yii::$app->db->createCommand("update category set updated_at='$date' where id='$id'")->execute();
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

@@ -106,7 +106,7 @@ class ArticleController extends Controller
             $author = Yii::$app->user->identity['username'];
             $date = date('Y-m-d H:i:s');
             Yii::$app->db->createCommand("update article set updated_at='$date', created_at='$date', author='$author' where id='$model->id' ")->execute();
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -128,7 +128,7 @@ class ArticleController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $date = date('Y-m-d H:i:s');
             Yii::$app->db->createCommand("update article set updated_at='$date' where id='$id'")->execute();
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
         return $this->render('update', [
             'model' => $model,

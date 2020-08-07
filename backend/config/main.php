@@ -30,28 +30,22 @@ return [
         ],
     ],
     'components' => [
-        'urlManager' => [
-            // 是否开启美化效果
-
-            'enablePrettyUrl' => true,
-            // 是否或略脚本名index.php
-            'showScriptName' => false,
-            // 是否开启严格解析路由
-            'enableStrictParsing' => true,
-            'suffix' => '.html',
-            'rules' => [
-                'admin/article/<action:\w+>/<id:\d+>' => 'admin/article/<action>',
-                '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',// eg: /blog/index?id=2   ===>  /blog/index/2.html
-                '<controller:\w+>/<id:\d+>' => '<controller>/view.php',// 将controller/id映射到controller/view界面 eg: /blog/view?id=3   ===> /b log/3.html
-                '<controller:[0-9a-z\-]+>/<id:\d+>' => '<controller>/view',// 查看详细中间有横线的情况
-                "<controller:[a-z0-9\-]+>/<action:[a-z0-9\-]+>" => "<controller>/<action>", // 匹配了Controller或Action中间有横线-的情况
-                "<controller:\w+>/<action:\w+>"=>"<controller>/<action>",
-                "<module:\w+>/<controller:\w+>/<action:\w+>" => "<module>/<controller>/<action>", // index.php/admin/route/index  ===> /admin/route/index.html
-
-                '' => 'site/index',// 设置首页
-                '/index' => 'site/index',// 设置首页
-            ],
-        ],
+//        'urlManager' => [
+//            // 是否开启美化效果
+//
+//            'enablePrettyUrl' => true,
+//            // 是否或略脚本名index.php
+//            'showScriptName' => false,
+//            // 是否开启严格解析路由
+//            'enableStrictParsing' => true,
+////            'suffix' => '.html',
+//            'rules' => [
+//                "<module:\w+>/<controller:\w+>/<action:\w+>" => "<module>/<controller>/<action>", // index.php/admin/route/index  ===> /admin/route/index.html
+//
+//                '' => 'site/index',// 设置首页
+//                '/index' => 'site/index',// 设置首页
+//            ],
+//        ],
 
         'user' => [
             'identityClass' => 'common\models\AdminModel',

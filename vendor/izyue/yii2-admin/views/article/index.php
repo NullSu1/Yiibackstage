@@ -15,16 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <section class="wrapper site-min-height">
             <section class="panel">
                 <h1><?= Html::encode($this->title) ?></h1>
-
                 <p>
                     <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
                 </p>
 
-                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
+//                    'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 

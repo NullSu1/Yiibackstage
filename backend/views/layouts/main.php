@@ -1103,6 +1103,23 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
         }
 
 
+        .blog-detail__content .download {
+            margin: 42px 0;
+            padding: 30px 34px 34px;
+            background: #FFFFFF;
+            -webkit-box-shadow: 0 3px 6px #00000014;
+            box-shadow: 0 3px 6px #00000014;
+            border: 1px solid #CECECE;
+            border-radius: 12px;
+            color: #2A2A2A;
+        }
+
+        .blog-detail__content .download .download__left {
+            display: inline-block;
+            vertical-align: top;
+            width: 480px;
+        }
+
         .blog-detail__content .download .download__left h3 {
             font: 600 20px/24px Montserrat;
         }
@@ -1116,23 +1133,43 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
             list-style: inside url(img/icon_ul_star.svg);
         }
 
+        .blog-detail__content .download .download__right {
+            margin-left: 40px;
+            display: inline-block;
+            vertical-align: top;
+            width: 210px;
+            text-align: center;
+        }
 
-        .blog-detail__content .download .download__right p.star i {
+        .blog-detail__content .download .download__right p.star {
+            margin-top: 0;
+        }
+
+        .blog-detail__content .download .download__right p.star q {
             margin: 0 3px;
             display: inline-block;
             width: 17px;
             height: 16px;
-            background-image: url(img/icon_star.svg);
+            background-image: url(img/icon__btn-download_logo_windows.svg);
             background-size: contain;
             vertical-align: top;
         }
 
+        .blog-detail__content .download .download__right .btn-container {
+            margin-top: 22px;
+            width: 100%;
+            height: 60px;
+        }
 
         .blog-detail__content .download .download__right .btn-container a {
             width: 100%;
             height: 100%;
         }
 
+        .blog-detail__content .download .download__right p.note {
+            margin-top: 16px;
+            font: 400 12px Montserrat;
+        }
 
         .blog-detail__content .download button {
             padding: 0 10%;
@@ -1156,6 +1193,15 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
         .blog-detail__content .download button:hover {
             background-color: #00e257;
         }
+
+        .blog-detail__content .download .btn-apps {
+            width: 100%;
+            min-width: auto;
+            height: 100%;
+            min-height: auto;
+            border-radius: 64px;
+        }
+
 
 
         .blog-detail__content .index ul {
@@ -1371,27 +1417,27 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
             background-color: #14D567;
         }
 
-        .blog-detail__content button.btn-download-green:hover .icon i {
+        .blog-detail__content button.btn-download-green:hover .icon q {
             opacity: 0;
             -webkit-transform: translateY(20px);
             transform: translateY(20px);
         }
 
-        .blog-detail__content button.btn-download-green:hover .icon b {
+        .blog-detail__content button.btn-download-green:hover .icon g {
             opacity: 1;
             -webkit-transform: translateY(0);
             transform: translateY(0);
         }
 
-        .blog-detail__content button.btn-download-green.icon-windows .icon i {
+        .blog-detail__content button.btn-download-green.icon-windows .icon q {
             background-image: url(img/icon__btn-download_logo_windows.svg);
         }
 
-        .blog-detail__content button.btn-download-green.icon-android .icon i {
+        .blog-detail__content button.btn-download-green.icon-android .icon q {
             background-image: url(img/icon__btn-download_logo_android_white.svg);
         }
 
-        .blog-detail__content button.btn-download-green.icon-ios .icon i {
+        .blog-detail__content button.btn-download-green.icon-ios .icon q {
             background-image: url(img/icon__btn-download_logo_apple_white.svg);
         }
 
@@ -1409,8 +1455,8 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
             display: none;
         }
 
-        .blog-detail__content button.btn-download-green .icon i,
-        .blog-detail__content button.btn-download-green .icon b {
+        .blog-detail__content button.btn-download-green .icon q,
+        .blog-detail__content button.btn-download-green .icon g {
             position: absolute;
             top: 0;
             left: 0;
@@ -1424,7 +1470,7 @@ function initMenu($menuArray, $controllerName, $isSubUrl, $isShowIcon = false)
             transition: all 0.3s;
         }
 
-        .blog-detail__content button.btn-download-green .icon b {
+        .blog-detail__content button.btn-download-green .icon g {
             opacity: 0;
             -webkit-transform: translateY(-20px);
             transform: translateY(-20px);

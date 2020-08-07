@@ -9,16 +9,10 @@ RedactorPlugins.clips = function () {
                 'advertise' +
                 'on Instagram using each of them. ' +
                 '</section><br>'],
-                ['Add Title', '<section><h2 class="title-list">Title Name</h2></section><br>'],
-                ['Add Title_List', '<section class="title-list-pos" id="title-list1">' +
-                '<section style="margin:0 auto;text-align: center;color: #fff;line-height: 49px;background: #ff3d00;width: 192px;height: 49px;font-size: 18px;box-shadow: 0px 7px 7.28px 0.72px rgba(161, 177, 194, 0.4);background-image: -webkit-linear-gradient(90deg, #1c67fc 0%, #1c7cfe 32%, #1c90ff 100%);">' +
-                'Title List' +
-                '</section>' +
-                '</section>' +
-                '<section class="end_tag"></section><br>'],
-                ['Add redirect', '<section class="redirect" style="width: 100%;border-left: solid #bfe9dc 3px;background-color: #C1FFC1">' +
-                '<a href="#" target="_self" textvalue="title">title</a>' +
-                '</section><br>'],
+                ['Add redirect', '<section data-v-57ce008d="" class="related-list">' +
+                '<h2 data-v-57ce008d="">Related Readings for Reference</h2>' +
+                '<a data-v-57ce008d="" href="/blog/#" class=""> link text </a>' +
+                '</section>'],
                 ['Add Table', '<table>' +
                 '<thead>' +
                 '<tr>' +
@@ -43,33 +37,33 @@ RedactorPlugins.clips = function () {
                 '</tr>' +
                 '</tbody>' +
                 '</table><br>'],
-                ['download module 1', '<section class="download-type-1"> ' +
-                '<h2>GetInsta - Get Free Instagram Followers & Likes</h2> ' +
+                ['download module 1', '<section class="download-type-1">\n ' +
+                '<h2>GetInsta - Get Free Instagram Followers & Likes</h2> \n' +
                 '<ul> ' +
-                '<li>Free high-quality Instagram followers & likes from 100% real person.</li> ' +
-                '<li>Getting followers and also get the same amount of additional free likes.</li> ' +
-                '<li>Instant delivery guaranteed and 24/7 customer support.</li> ' +
-                '</ul> ' +
-                '<section class="btn-container"> ' +
-                '<a class="btn-windows" download href="https://www.easygetinsta.com/downloadpc"> ' +
-                '<button class="btn-download-green icon-windows"> ' +
-                '<section class="icon"> ' +
-                '<i></i> ' +
-                '<b></b> ' +
-                '</section> ' +
-                '<section class="text">Free Download</section>' +
-                '</button>' +
-                '</a> ' +
-                '<a class="btn-android" download href="https://www.easygetinsta.com/downloadcenter"> ' +
-                '<button class="btn-download-green icon-android"> ' +
-                '<section class="icon"> ' +
-                '<i></i> ' +
-                '<b></b> ' +
-                '</section> ' +
-                '<section class="text">Free Download</section>' +
-                '</button> ' +
-                '</a> ' +
-                '<a class="btn-ios" href="https://apps.apple.com/app/app-store/id1498558125"> ' +
+                '<li>Free high-quality Instagram followers & likes from 100% real person.</li>\n ' +
+                '<li>Getting followers and also get the same amount of additional free likes.</li>\n ' +
+                '<li>Instant delivery guaranteed and 24/7 customer support.</li> \n' +
+                '</ul>\n ' +
+                '<section class="btn-container">\n ' +
+                '<a class="btn-windows" download href="https://www.easygetinsta.com/downloadpc">\n ' +
+                '<button class="btn-download-green icon-windows"> \n' +
+                '<section class="icon">\n ' +
+                '<i></i> \n' +
+                '<b></b> \n' +
+                '</section> \n' +
+                '<section class="text">Free Download</section>\n' +
+                '</button>\n' +
+                '</a> \n' +
+                '<a class="btn-android" download href="https://www.easygetinsta.com/downloadcenter">\n ' +
+                '<button class="btn-download-green icon-android"> \n' +
+                '<section class="icon"> \n' +
+                '<i></i> \n' +
+                '<b></b>\n ' +
+                '</section> \n' +
+                '<section class="text">Free Download</section>\n' +
+                '</button> \n' +
+                '</a>\n ' +
+                '<a class="btn-ios" href="https://apps.apple.com/app/app-store/id1498558125">\n ' +
                 '<button class="btn-download-green icon-ios"> ' +
                 '<section class="icon"> ' +
                 '<i></i> ' +
