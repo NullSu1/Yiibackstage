@@ -30,7 +30,7 @@ class Article extends \common\models\base\BaseModel
     public function rules()
     {
         return [
-            [['user', 'article_title','SEO_title'], 'required'],
+            [['article_title','SEO_title'], 'required'],
             [['content','updated_at','SEO_title','mate_description'], 'string'],
             [['created_at'], 'safe'],
             [['user', 'article_title','author','SEO_url','TAG','category'], 'string', 'max' => 255],

@@ -9,7 +9,11 @@ $this->title = 'Update Article: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
+if(@$save){
+    echo "<script>alert('" .$save. "')</script>";
+}
 ?>
+
 <div class="article-update">
 
     <h1><?= Html::encode($this->title) ?></h1>

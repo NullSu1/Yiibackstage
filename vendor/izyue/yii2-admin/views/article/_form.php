@@ -2,6 +2,7 @@
 
 use izyue\admin\models\searchs\Category as CategorySearch;
 use yii\helpers\Html;
+use yii\helpers\url;
 use yii\helpers\ArrayHelper;
 use yii\redactor\widgets\Redactor;
 use yii\widgets\ActiveForm;
@@ -22,7 +23,6 @@ foreach($query->batch() as $arr){}
                     <?php $form = ActiveForm::begin(); ?>
                     <?= $form->field($model, 'language')->dropDownList(['en'=>'en']) ?>
                     <?= $form->field($model, 'category')->dropDownList([ArrayHelper::map($arr, 'sortname', 'sortname')]) ?>
-                    <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'SEO_title')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'SEO_url')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'article_title')->textInput(['maxlength' => true]) ?>
@@ -32,6 +32,7 @@ foreach($query->batch() as $arr){}
                     <?= $form->field($model, 'content')->widget(Redactor::className(),
                     [
                         'clientOptions' => [
+                            'imageManagerJson' => ['@webroot/upload/image-json'],
                             'minHeight' => '300px',
                             'lang' => 'zh_cn',
                             'plugins' => ['clips', 'counter', 'definedlinks', 'filemanager',
@@ -40,11 +41,12 @@ foreach($query->batch() as $arr){}
                                 'textexpander']
                         ]
                     ]) ?>
-
                     <div class="form-group">
+                        <?= $form->field($model, 'publish')->checkbox(['maxlength' => true, 'name'=>'publish']) ?>
+                        <?= $form->field($model, 'hot_article')->checkbox(['maxlength' => true, 'name'=>'hot_article']) ?>
                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                        <a class="btn btn-success" href="<?= url::toRoute(['/admin/article/preview','id'=>$model->id])?>">Preview</a>
                     </div>
-
                     <?php ActiveForm::end(); ?>
                 </div>
             </section>

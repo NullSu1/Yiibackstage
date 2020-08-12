@@ -30,7 +30,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
                             var thumbtitle = '';
                             if (typeof val.title !== 'undefined') thumbtitle = val.title;
 
-                            var img = $('<img src="' + val.thumb + '" alt="' + val.title + '" />');
+                            var img = $('<img src="' + val.thumb + '" alt="' + val.alt + '" title="' + val.title + '"/>');
                             $('#redactor-image-manager-box').append(img);
                             $(img).click($.proxy(this.imagemanager.insert, this));
 
@@ -43,7 +43,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 
             },
             insert: function (e) {
-                this.image.insert('<img src="' + $(e.target).attr('rel') + '" alt="' + $(e.target).attr('title') + '">');
+                this.image.insert('<img src="' + $(e.target).attr('rel') + '" alt="' + $(e.target).attr('alt') + '">');
             }
         };
     };

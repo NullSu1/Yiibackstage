@@ -8,6 +8,9 @@ use yii\helpers\Html;
 $this->title = 'Create Article';
 $this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+if(@$save){
+    echo "<script>alert('" .$save. "')</script>";
+}
 ?>
 <div class="article-create">
 

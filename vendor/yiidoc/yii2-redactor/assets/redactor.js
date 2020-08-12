@@ -640,7 +640,7 @@
                     }
                     else if (block.tagName.toLowerCase() != tag) {
                         if (this.opts.linebreaks && tag == 'p') {
-                            $(block).prepend('<br>').append('<br>');
+                            // $(block).prepend('<br>').append('<br>');
                             this.utils.replaceWithContents(block);
                         }
                         else {
@@ -658,7 +658,7 @@
                     else if (tag == 'blockquote' && block.tagName.toLowerCase() == tag) {
                         // blockquote off
                         if (this.opts.linebreaks) {
-                            $(block).prepend('<br>').append('<br>');
+                            // $(block).prepend('<br>').append('<br>');
                             this.utils.replaceWithContents(block);
                         }
                         else {
@@ -683,7 +683,7 @@
                         if (block.tagName.toLowerCase() == tag && tag == 'blockquote') {
                             // blockquote off
                             if (this.opts.linebreaks) {
-                                $(block).prepend('<br>').append('<br>');
+                                // $(block).prepend('<br>').append('<br>');
                                 this.utils.replaceWithContents(block);
                             }
                             else {
@@ -704,7 +704,7 @@
                         }
                         else {
                             if (this.opts.linebreaks && tag == 'p') {
-                                $(block).prepend('<br>').append('<br>');
+                                // $(block).prepend('<br>').append('<br>');
                                 this.utils.replaceWithContents(block);
                             }
                             else if (block.tagName === 'TD') {
@@ -734,7 +734,7 @@
                                     $.each(this.block.blocks, $.proxy(function (i, s) {
                                         var $formatted = false;
                                         if (this.opts.linebreaks) {
-                                            $(s).prepend('<br>').append('<br>');
+                                            // $(s).prepend('<br>').append('<br>');
                                             $formatted = this.utils.replaceWithContents(s);
                                         }
                                         else {
@@ -1744,7 +1744,7 @@
                     html = html.replace(/<img(.*?[^>])\srel="(.*?[^>])"(.*?[^>])>/gi, '<img$1$3>');
                     html = html.replace(/<img(.*?[^>])\sstyle="" (.*?[^>])>'/gi, '<img$1 $2>');
                     html = html.replace(/<img(.*?[^>])\sstyle (.*?[^>])>'/gi, '<img$1 $2>');
-                    html = html.replace(/<span class="redactor-invisible-space">(.*?)<\/span>/gi, '$1');
+                    // html = html.replace(/<span class="redactor-invisible-space">(.*?)<\/span>/gi, '$1');
                     html = html.replace(/ data-save-url="(.*?[^>])"/gi, '');
 
                     // remove image resize
@@ -1951,7 +1951,7 @@
                     var tagsEmpty = false;
                     var attrAllowed = [
                         ['a', '*'],
-                        ['img', ['src', 'alt']],
+                        ['img', ['src', 'alt', 'title']],
                         ['span', ['class', 'rel', 'data-verified']],
                         ['iframe', '*'],
                         ['video', '*'],
@@ -2894,8 +2894,9 @@
                         this.image.update($image);
 
                     }, this));
-
-                    $('#redactor-image-title').val($image.attr('alt'));
+                    
+                    $('#redactor-image-title').val($image.attr('title'));
+                    $('#redactor-image-alt').val($image.attr('alt'));
 
                     if (!this.opts.imageLink) $('.redactor-image-link-option').hide();
                     else {
@@ -2948,7 +2949,8 @@
 
                     var $link = $image.closest('a', this.$editor[0]);
 
-                    $image.attr('alt', $('#redactor-image-title').val());
+                    $image.attr('title', $('#redactor-image-title').val());
+                    $image.attr('alt', $('#redactor-image-alt').val());
 
                     this.image.setFloating($image);
 
@@ -3246,7 +3248,7 @@
                         $img = $(json).attr('data-redactor-inserted-image', 'true');
                     }
                     else {
-                        $img = $('<img>');
+                        $img = $('<img alt="12356.png" title="Picture-example.png">');
                         $img.attr('src', json.filelink).attr('data-redactor-inserted-image', 'true');
                     }
 
@@ -5073,7 +5075,9 @@
                     this.opts.modal = {
                         imageEdit: String()
                         + '<section id="redactor-modal-image-edit">'
-                        + '<label>' + this.lang.get('title') + '</label>'
+                        + '<label>alt</label>'
+                        + '<input type="text" id="redactor-image-alt" value="21" />'
+                        + '<label>title</label>'
                         + '<input type="text" id="redactor-image-title" />'
                         + '<label class="redactor-image-link-option">' + this.lang.get('link') + '</label>'
                         + '<input type="text" id="redactor-image-link" class="redactor-image-link-option" />'
@@ -5096,7 +5100,7 @@
                         + '<section id="redactor-modal-file-insert">'
                         + '<div id="redactor-modal-file-upload-box">'
                         + '<label>' + this.lang.get('filename') + '</label>'
-                        + '<input type="text" id="redactor-filename" /><br><br>'
+                        + '<input type="text" id="redactor-filename" /><br>'
                         + '<div id="redactor-modal-file-upload"></div>'
                         + '</div>'
                         + '</section>',
@@ -7308,8 +7312,8 @@
 
                 // get invisible space element
                 createSpaceElement: function () {
-                    var space = document.createElement('span');
-                    space.className = 'redactor-invisible-space';
+                    var space = document.createElement('p');
+                    // space.className = 'redactor-invisible-space';
                     space.innerHTML = this.opts.invisibleSpace;
 
                     return space;

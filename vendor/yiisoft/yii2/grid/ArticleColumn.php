@@ -59,7 +59,7 @@ class ArticleColumn extends Column
      *
      * @see buttons
      */
-    public $template = '{view} {update} {delete} {retrieve} {softdelete}';
+    public $template = '{view} {update} {delete} {retrieve} {softdelete} {release}';
     /**
      * @var array button rendering callbacks. The array keys are the button names (without curly brackets),
      * and the values are the corresponding button rendering callbacks. The callbacks should use the following
@@ -144,14 +144,7 @@ class ArticleColumn extends Column
     {
 
 
-        if (Yii::$app->controller->action->id == 'index') {
-            $this->initDefaultButton('view', 'eye-open');
-            $this->initDefaultButton('update', 'pencil');
-            $this->initDefaultButton('softdelete', 'trash', [
-                'data-confirm' => Yii::t('yii', 'you will remove this item?'),
-                'data-method' => 'post',
-            ]);
-        } else {
+        if (Yii::$app->controller->action->id == 'recycle') {
             $this->initDefaultButton('retrieve', 'random', [
                 'data-confirm' => Yii::t('yii', 'you will retrieve this item?'),
                 'data-method' => 'post',
@@ -161,6 +154,13 @@ class ArticleColumn extends Column
                 'data-method' => 'post',
             ]);
         }
+        else {
+            $this->initDefaultButton('view', 'eye-open');
+            $this->initDefaultButton('update', 'pencil');
+            $this->initDefaultButton('softdelete', 'trash', ['data-confirm' => Yii::t('yii', 'you will remove this item?'),
+                'data-method' => 'post',]);
+        }
+
     }
 
     /**
@@ -216,7 +216,7 @@ class ArticleColumn extends Column
             return call_user_func($this->urlCreator, $action, $model, $key, $index, $this);
         }
 
-        $params = is_array($key) ? $key : ['id' => (string) $key];
+        $params = is_array($key) ? $key : ['id' => (string)$key];
         $params[0] = $this->controller ? $this->controller . '/' . $action : $action;
 
         return Url::toRoute($params);

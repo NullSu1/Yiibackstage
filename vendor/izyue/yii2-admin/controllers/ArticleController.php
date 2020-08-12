@@ -38,6 +38,14 @@ class ArticleController extends Controller
      */
     public function actionIndex()
     {
+//        $model = $this->findModel($id);
+//        if($model->hot_article == 0){
+//            Yii::$app->db->createCommand()->update('article', ['hot_article'=>1],"id='$id'")->execute();
+//        }
+//        else{
+//            Yii::$app->db->createCommand()->update('article', ['hot_article'=>0],"id='$id'")->execute();
+//        }
+        
         $searchModel = new ArticleSearch;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -106,6 +114,18 @@ class ArticleController extends Controller
             $author = Yii::$app->user->identity['username'];
             $date = date('Y-m-d H:i:s');
             Yii::$app->db->createCommand("update article set updated_at='$date', created_at='$date', author='$author' where id='$model->id' ")->execute();
+            if(Yii::$app->request->post('publish')){
+                Yii::$app->db->createCommand()->update('article', ['publish'=>1],"id='$id'")->execute();
+                return $this->render('view', [
+                    'model' => $model,
+                    'save' => 'publish successfully',
+                ]);
+            }
+            //hot article
+            if($model->hot_article == 0 && Yii::$app->request->post('hot_article')){
+                Yii::$app->db->createCommand()->update('article', ['hot_article'=>1],"id='$id'")->execute();
+                return $this->redirect('index');
+            }
             return $this->redirect(['index']);
         }
 
@@ -128,7 +148,37 @@ class ArticleController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $date = date('Y-m-d H:i:s');
             Yii::$app->db->createCommand("update article set updated_at='$date' where id='$id'")->execute();
-            return $this->redirect(['index']);
+
+            //publish
+            if($model->publish == 0 && Yii::$app->request->post('publish')){
+                Yii::$app->db->createCommand()->update('article', ['publish'=>1],"id='$id'")->execute();
+                return $this->render('view', [
+                    'model' => $model,
+                    'save' => 'publish successfully',
+                ]);
+            }
+            else if($model->publish == 1 && !Yii::$app->request->post('publish')){
+                Yii::$app->db->createCommand()->update('article', ['publish'=>0],"id='$id'")->execute();
+                return $this->render('view', [
+                    'model' => $model,
+                    'save' => 'unpublish successfully',
+                ]);
+            }
+
+            //hot article
+            if($model->hot_article == 0 && Yii::$app->request->post('hot_article')){
+                Yii::$app->db->createCommand()->update('article', ['hot_article'=>1],"id='$id'")->execute();
+                return $this->redirect(['index']);
+            }
+            else if($model->hot_article == 1 && !Yii::$app->request->post('hot_article')){
+                Yii::$app->db->createCommand()->update('article', ['hot_article'=>0],"id='$id'")->execute();
+                return $this->redirect(['index']);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+                'save'=>'save successfully',
+            ]);
         }
         return $this->render('update', [
             'model' => $model,
@@ -203,5 +253,23 @@ class ArticleController extends Controller
         $model->softdelete = 1;
         $model->update();
         return $this->redirect(['recycle']);
+    }
+
+    public function actionPreview($id){
+        return $this->render('preview', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionChangeHot(){
+        $model = $this->findModel($id);
+        if($model->hot_article == 0){
+            Yii::$app->db->createCommand()->update('article', ['hot_article'=>1],"id='$id'")->execute();
+            return $this->redirect(['index']);
+        }
+        else{
+            Yii::$app->db->createCommand()->update('article', ['hot_article'=>0],"id='$id'")->execute();
+            return $this->redirect(['index']);
+        }
     }
 }

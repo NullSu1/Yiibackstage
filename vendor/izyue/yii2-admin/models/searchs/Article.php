@@ -19,7 +19,7 @@ class Article extends ArticleModel
     {
         return [
             [['id'], 'integer'],
-            [['user', 'article_title', 'content', 'created_at', 'updated_at'], 'safe'],
+            [['author', 'article_title', 'content', 'created_at', 'updated_at', 'publish', 'hot_article'], 'safe'],
         ];
     }
 
@@ -41,13 +41,19 @@ class Article extends ArticleModel
      */
     public function search($params,$type = true)
     {
+
+
         $query = ArticleModel::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
+        isset($params['per_page']) && $dataProvider->setPagination(['pageSize' => $params['per_page']]);
 
         $this->load($params);
 
