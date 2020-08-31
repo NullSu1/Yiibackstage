@@ -243,6 +243,7 @@
                 table: 'Table',
                 link: 'Link',
                 link_insert: 'Insert link',
+                insert_file: '插入锚点',
                 link_edit: 'Edit link',
                 unlink: 'Unlink',
                 formatting: 'Formatting',
@@ -299,8 +300,6 @@
                 align_center: 'Center text',
                 align_right: 'Align text to the right',
                 align_justify: 'Justify text',
-                horizontalrule: 'Insert Horizontal Rule',
-                deleted: 'Deleted',
                 anchor: 'Anchor',
                 link_new_tab: 'Open link in new tab',
                 underline: 'Underline',
@@ -2741,64 +2740,139 @@
         },
         file: function () {
             return {
-                show: function () {
-                    this.modal.load('file', this.lang.get('file'), 700);
-                    this.upload.init('#redactor-modal-file-upload', this.opts.fileUpload, this.file.insert);
+                show: function (e) {
+                    if (typeof e != 'undefined' && e.preventDefault) e.preventDefault();
 
-                    this.selection.save();
+                    this.modal.load('span', this.lang.get('insert_file'), 600);
+
+                    this.modal.createCancelButton();
+                    this.file.buttonInsert = this.modal.createActionButton(this.lang.get('insert'));
 
                     this.selection.get();
-                    var text = this.sel.toString();
 
-                    $('#redactor-filename').val(text);
+                    this.file.getData();
+                    // this.file.cleanUrl();
 
+
+                    this.file.$inputUrl = $('#redactor-link-url');
+                    this.file.$inputText = $('#redactor-link-url-text');
+
+                    this.file.$inputText.val(this.file.text);
+                    this.file.$inputUrl.val(this.file.url);
+
+                    this.file.buttonInsert.on('click', $.proxy(this.file.insert, this));
+
+                    // hide link's tooltip
+                    // $('.redactor-link-tooltip').remove();
+
+                    // show modal
+                    this.selection.save();
                     this.modal.show();
+                    this.file.$inputUrl.focus();
                 },
-                insert: function (json, direct, e) {
-                    // error callback
-                    if (typeof json.error != 'undefined') {
-                        this.modal.close();
-                        this.selection.restore();
-                        this.core.setCallback('fileUploadError', json);
-                        return;
-                    }
 
-                    var link;
-                    if (typeof json == 'string') {
-                        link = json;
+                getData: function () {
+                    this.file.$node = false;
+
+                    var $el = $(this.selection.getCurrent()).closest('span', this.$editor[0]);
+                    if ($el.length !== 0 && $el[0].tagName === 'SPAN') {
+                        this.file.$node = $el;
+
+                        this.file.url = $el.attr('id');
+                        this.file.text = $el.text();
                     }
                     else {
-                        var text = $('#redactor-filename').val();
-                        if (typeof text == 'undefined' || text === '') text = json.filename;
-
-                        link = '<a href="' + json.filelink + '" id="filelink-marker">' + text + '</a>';
+                        this.file.text = this.sel.toString();
+                        this.file.url = '';
                     }
 
-                    if (direct) {
-                        this.selection.removeMarkers();
-                        var marker = this.selection.getMarker();
-                        this.insert.nodeToCaretPositionFromPoint(e, marker);
-                    }
-                    else {
-                        this.modal.close();
-                    }
+                },
+                insert: function () {
+                    this.placeholder.remove();
+
+                    var id = this.file.$inputUrl.val();
+                    var text = this.file.$inputText.val();
+
+                    this.file.set(text, id);
+                    this.modal.close();
+                },
+                set: function (text, id) {
+                    text = $.trim(text.replace(/\\d/g, ''));
 
                     this.selection.restore();
-                    this.buffer.set();
 
-                    this.insert.htmlWithoutClean(link);
+                    if (text === '' && id === '') return;
+                    if (text !== '' && id === '') id = text;
+                    if (text === '' && id !== '') text = id;
 
-                    if (typeof json == 'string') return;
+                    if (this.file.$node) {
+                        this.buffer.set();
 
-                    var linkmarker = $(this.$editor.find('a#filelink-marker'));
-                    if (linkmarker.length !== 0) {
-                        linkmarker.removeAttr('id').removeAttr('style');
+                        var $id = this.file.$node,
+                            $el = $id.children();
+
+                        if ($el.length > 0) {
+                            while ($el.length) {
+                                $el = $el.children();
+                            }
+
+                            $el = $el.end();
+                        }
+                        else {
+                            $el = $id;
+                        }
+
+                        $id.attr('id', id);
+                        $el.text(text);
+
+                        this.selection.selectElement($id);
+
+                        this.code.sync();
                     }
-                    else linkmarker = false;
+                    else {
+                        if (this.file.url === '') {
+                            var $span = $('<span id="' + id + '">').text(text);
 
-                    this.core.setCallback('fileUpload', linkmarker, json);
+                            this.insert.node($span);
+                            this.selection.selectElement($span);
+                        }
+                        else {
+                            var $span;
+                            if (this.utils.browser('msie')) {
+                                $span = $('<span id="' + id + '">').text(text);
 
-                }
+                                $span = $(this.insert.node($a));
+
+                                if (this.selection.getText().match(/\s$/)) {
+                                    $span.after(" ");
+                                }
+
+                                this.selection.selectElement($span);
+                            }
+                            else {
+                                document.execCommand('createFile', false, id);
+
+                                $span = $(this.selection.getCurrent()).closest('span', this.$editor[0]);
+
+
+                                if (this.selection.getText().match(/\s$/)) {
+                                    $span.after(" ");
+                                }
+
+                                if (this.file.text !== '' || this.file.text != text) {
+                                    $span.text(text);
+
+                                    this.selection.selectElement($span);
+                                }
+                            }
+                        }
+
+                        this.code.sync();
+                        this.core.setCallback('insertedFile', $span);
+
+                    }
+
+                },
             };
         },
         focus: function () {
@@ -2969,7 +3043,7 @@
                         var target = ($('#redactor-image-link-blank').prop('checked')) ? true : false;
 
                         if ($link.length === 0) {
-                            var a = $('<a href="' + link + '">' + this.utils.getOuterHtml($image) + '</a>');
+                            var a = $('<a href="' + link + '" title="' + title + '">' + this.utils.getOuterHtml($image) + '</a>');
                             if (target) a.attr('target', '_blank');
 
                             $image.replaceWith(a);
@@ -4694,10 +4768,12 @@
                     this.link.$inputUrl = $('#redactor-link-url');
                     this.link.$inputText = $('#redactor-link-url-text');
                     this.link.$inputTitle = $('#redactor-link-url-title');
+                    this.link.$inputAnchor = $('#redactor-link-url-anchor');
 
                     this.link.$inputText.val(this.link.text);
                     this.link.$inputTitle.val(this.link.title);
                     this.link.$inputUrl.val(this.link.url);
+                    this.link.$inputAnchor.val(this.link.anchor);
 
                     this.link.buttonInsert.on('click', $.proxy(this.link.insert, this));
 
@@ -4733,12 +4809,13 @@
 
                         this.link.url = $el.attr('href');
                         this.link.title = $el.attr('title');
+                        this.link.anchor = $el.attr('anchor');
                         this.link.text = $el.text();
                         this.link.target = $el.attr('target');
                     }
                     else {
                         this.link.text = this.sel.toString();
-                        this.link.title = this.sel.toString();
+                        this.link.title = '';
                         this.link.url = '';
                         this.link.target = '';
                     }
@@ -4751,6 +4828,7 @@
                     var link = this.link.$inputUrl.val();
                     var text = this.link.$inputText.val();
                     var title = this.link.$inputTitle.val();
+                    var anchor = this.link.$inputAnchor.val();
 
                     if ($.trim(link) === '') {
                         this.link.$inputUrl.addClass('redactor-input-error').on('keyup', function () {
@@ -4782,12 +4860,11 @@
                         }
                     }
 
-                    this.link.set(title, text, link, target);
+                    this.link.set(title, text, link, target, anchor);
                     this.modal.close();
                 },
-                set: function (title, text, link, target) {
+                set: function (title, text, link, target, anchor) {
                     text = $.trim(text.replace(/\\d/g, ''));
-                    title = $.trim(title.replace(/\\d/g, ''));
 
                     this.selection.restore();
 
@@ -4813,6 +4890,7 @@
 
                         $link.attr('href', link);
                         $link.attr('title', title);
+                        $link.attr('data-id', anchor);
                         $link.attr('textvalue', text)
                         $el.text(text);
 
@@ -4828,8 +4906,8 @@
                         this.code.sync();
                     }
                     else {
-                        if (this.utils.browser('mozilla') && this.link.text === '') {
-                            var $a = $('<a />').attr('href', link).attr('title', title).attr('textvalue', text).text(text);
+                        if (this.link.url === '') {
+                            var $a = $('<a />').attr('href', link).attr('title', title).attr('data-id', anchor).text(text);
                             if (target !== '') $a.attr('target', target);
 
                             this.insert.node($a);
@@ -4838,7 +4916,7 @@
                         else {
                             var $a;
                             if (this.utils.browser('msie')) {
-                                $a = $('<a href="' + link + '" title="' + title + '" textvalue="' + text + '">').text(text);
+                                $a = $('<a href="' + link + '" title="' + title + '">').text(text);
                                 if (target !== '') $a.attr('target', target);
 
                                 $a = $(this.insert.node($a));
@@ -5096,14 +5174,13 @@
                         + '<div id="redactor-modal-image-droparea"></div>'
                         + '</section>',
 
-                        file: String()
-                        + '<section id="redactor-modal-file-insert">'
-                        + '<div id="redactor-modal-file-upload-box">'
-                        + '<label>' + this.lang.get('filename') + '</label>'
-                        + '<input type="text" id="redactor-filename" /><br>'
-                        + '<div id="redactor-modal-file-upload"></div>'
-                        + '</div>'
-                        + '</section>',
+                        span: String()
+                            + '<section id="redactor-modal-link-insert">'
+                            + '<label>ID</label>'
+                            + '<input type="text" id="redactor-link-url"/>'
+                            + '<label>' + this.lang.get('text') + '</label>'
+                            + '<input type="text" id="redactor-link-url-text" />'
+                            + '</section>',
 
                         link: String()
                         + '<section id="redactor-modal-link-insert">'
@@ -5113,6 +5190,8 @@
                         + '<input type="text" id="redactor-link-url-text" />'
                         + '<label>' + this.lang.get('title') + '</label>'
                         + '<input type="text" id="redactor-link-url-title"/>'
+                        + '<label>锚点</label>'
+                        + '<input type="text" id="redactor-link-url-anchor"/>'
                         + '<label><input type="checkbox" id="redactor-link-blank"> ' + this.lang.get('link_new_tab') + '</label>'
                         + '</section>'
                     };
@@ -5436,6 +5515,12 @@
                     }, this));
 
                 },
+                files: function () {
+                    if (!this.opts.linkTooltip) return;
+                    this.$editor.find('span').on('touchstart.redactor.' + this.uuid + ' click.redactor.' + this.uuid, $.proxy(this.observe.showTooltip, this));
+                    this.$editor.on('touchstart.redactor.' + this.uuid + ' click.redactor.' + this.uuid, $.proxy(this.observe.closeTooltip, this));
+                    $(document).on('touchstart.redactor.' + this.uuid + ' click.redactor.' + this.uuid, $.proxy(this.observe.closeTooltip, this));
+                },
                 links: function () {
                     if (!this.opts.linkTooltip) return;
 
@@ -5464,8 +5549,11 @@
                     var tooltip = $('<span class="redactor-link-tooltip"></span>');
 
                     var href = $link.attr('href');
+                    var title = $link.attr('title');
                     if (href === undefined) {
                         href = '';
+                    }if (title === undefined) {
+                        title = '';
                     }
 
                     if (href.length > 24) href = href.substring(0, 24) + '...';
@@ -6688,10 +6776,6 @@
                             title: this.lang.get('italic'),
                             func: 'inline.format'
                         },
-                        deleted: {
-                            title: this.lang.get('deleted'),
-                            func: 'inline.format'
-                        },
                         underline: {
                             title: this.lang.get('underline'),
                             func: 'inline.format'
@@ -6754,10 +6838,6 @@
                                 }
                             }
                         },
-                        horizontalrule: {
-                            title: this.lang.get('horizontalrule'),
-                            func: 'line.insert'
-                        }
                     };
                 },
                 build: function () {
@@ -7586,7 +7666,7 @@
                             // escaping url
                             var regexp = new RegExp('(' + href.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + regexB + ')', 'g');
 
-                            html = html.replace(regexp, '<a href="' + linkProtocol + $.trim(href) + '">' + $.trim(text) + '</a>');
+                            html = html.replace(regexp, '<a href="' + linkProtocol + $.trim(href) + '" title="' + $.trim(title) + '">' + $.trim(text) + '</a>');
                         }
                     }
 

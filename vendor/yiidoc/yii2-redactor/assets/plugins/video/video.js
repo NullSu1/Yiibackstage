@@ -9,7 +9,7 @@ if (!RedactorPlugins) var RedactorPlugins = {};
                 return String()
                     + '<section id="redactor-modal-video-insert">'
                     + '<label>' + this.lang.get('video_html_code') + '</label>'
-                    + '<textarea id="redactor-insert-video-area" style="height: 160px;"></textarea>'
+                    + '<textarea type="text" id="redactor-insert-video-area" style="height: 160px;"></textarea>'
                     + '</section>';
             },
             init: function () {
@@ -32,20 +32,20 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 
             },
             insert: function () {
-                var data = $('#redactor-insert-video-area').val();
+                var html = $('#redactor-insert-video-area').val();
 
-                if (!data.match(/<iframe|<video/gi)) {
-                    data = this.clean.stripTags(data);
+                if (!html.match(/<iframe|<video/gi)) {
+                    html = this.clean.stripTags(html);
 
                     // parse if it is link on youtube & vimeo
                     var iframeStart = '<iframe style="width: 500px; height: 281px;" src="',
                         iframeEnd = '" frameborder="0" allowfullscreen></iframe>';
 
-                    if (data.match(this.video.reUrlYoutube)) {
-                        data = data.replace(this.video.reUrlYoutube, iframeStart + '//www.youtube.com/embed/$1' + iframeEnd);
+                    if (html.match(this.video.reUrlYoutube)) {
+                        html = html.replace(this.video.reUrlYoutube, iframeStart + '//www.youtube.com/embed/$1' + iframeEnd);
                     }
-                    else if (data.match(this.video.reUrlVimeo)) {
-                        data = data.replace(this.video.reUrlVimeo, iframeStart + '//player.vimeo.com/video/$2' + iframeEnd);
+                    else if (html.match(this.video.reUrlVimeo)) {
+                        html = html.replace(this.video.reUrlVimeo, iframeStart + '//player.vimeo.com/video/$2' + iframeEnd);
                     }
                 }
 
@@ -54,9 +54,9 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 
                 var current = this.selection.getBlock() || this.selection.getCurrent();
 
-                if (current) $(current).after(data);
+                if (current) $(current).after(html);
                 else {
-                    this.insert.html(data);
+                    this.insert.html(html);
                 }
 
                 this.code.sync();

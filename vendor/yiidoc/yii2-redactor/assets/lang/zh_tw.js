@@ -51,7 +51,7 @@
         mailto: 'Email',
         web: '網址',
         video_html_code: '嵌入影片的原始碼',
-        file: '插入文件',
+        file: '插入锚点',
         upload: '上傳',
         download: '下載',
         choose: '選擇',

@@ -37,7 +37,7 @@ foreach($query->batch() as $arr){}
                             'lang' => 'zh_cn',
                             'plugins' => ['clips', 'counter', 'definedlinks', 'filemanager',
                                 'fontcolor', 'fontfamily', 'fontsize', 'fullscreen',
-                                'imagemanager', 'limiter', 'table', 'textdirection',
+                                'imagemanager', 'limiter', 'table', 'textdirection', 'video',
                                 'textexpander']
                         ]
                     ]) ?>
