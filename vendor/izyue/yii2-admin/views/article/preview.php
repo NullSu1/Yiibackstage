@@ -146,7 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $subQuery = Yii::$app->db->createCommand("select id, article_title from article where hot_article=1 AND publish=1")->queryAll();
                         foreach($subQuery as $arr): ?>
                         <a data-v-23970af3="" href="<?= url::toRoute(['article/preview','id'=>$arr['id']])?>"
-                           class="" title="<?php echo $arr['article_title']?>"><span data-v-23970af3=""><?php echo $arr['article_title']?></span></a></div>
+                           class="" title="<?php echo $arr['article_title']?>"><span data-v-23970af3=""><?php echo $arr['article_title']?></span></a>
                     <?php endforeach;?>
                 </div>
             </div>
