@@ -4809,12 +4809,13 @@
 
                         this.link.url = $el.attr('href');
                         this.link.title = $el.attr('title');
-                        this.link.anchor = $el.attr('anchor');
+                        this.link.anchor = $el.attr('data-id');
                         this.link.text = $el.text();
                         this.link.target = $el.attr('target');
                     }
                     else {
                         this.link.text = this.sel.toString();
+                        this.link.anchor = this.sel.toString();
                         this.link.title = '';
                         this.link.url = '';
                         this.link.target = '';
@@ -4891,7 +4892,7 @@
                         $link.attr('href', link);
                         $link.attr('title', title);
                         $link.attr('data-id', anchor);
-                        $link.attr('textvalue', text)
+                        $link.attr('textvalue', text);
                         $el.text(text);
 
                         if (target !== '') {
@@ -4916,7 +4917,7 @@
                         else {
                             var $a;
                             if (this.utils.browser('msie')) {
-                                $a = $('<a href="' + link + '" title="' + title + '">').text(text);
+                                $a = $('<a href="' + link + '" title="' + title + '" data-id="' + anchor + '">').text(text);
                                 if (target !== '') $a.attr('target', target);
 
                                 $a = $(this.insert.node($a));
